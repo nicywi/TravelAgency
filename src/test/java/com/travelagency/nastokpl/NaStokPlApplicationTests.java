@@ -1,10 +1,10 @@
-package com.example.travelagency;
+package com.travelagency.nastokpl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TravelAgencyApplicationTests {
+class NaStokPlApplicationTests {
 
     @Test
     void contextLoads() {
