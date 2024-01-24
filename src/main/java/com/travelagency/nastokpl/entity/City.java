@@ -24,4 +24,12 @@ public class City {
 	@OneToMany
 	@JoinColumn(name = "country_id")
 	private List<Country> countries;
+
+	@OneToOne
+	@JoinColumn(name = "airport_id")
+	private Airport airport;
+
+	@OneToOne
+	@JoinColumn(name = "hotel_id")
+	private Hotel hotel;
 }
