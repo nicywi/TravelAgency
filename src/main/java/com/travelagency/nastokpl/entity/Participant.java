@@ -6,20 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "airports")
+@Table(name = "hotels")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Airport {
+public class Participant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer id;
-
-	@Column
-	private String name;
-
-	@OneToOne
-	@JoinColumn(name = "city_id")
-	private City city;
 }
