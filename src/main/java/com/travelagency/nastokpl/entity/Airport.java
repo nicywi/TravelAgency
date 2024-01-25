@@ -19,7 +19,7 @@ public class Airport {
 	@Column
 	private String name;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 }

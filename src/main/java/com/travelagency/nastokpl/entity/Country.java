@@ -14,18 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 public class Country {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer id;
 
 	@Column
 	private String name;
 
-	@OneToMany
-	@JoinColumn (name = "continent_id")
-	private List<Continent> continents;
-
 	@ManyToOne
+	@JoinColumn(name = "continent_id")
+	private Continent continents;
+
+	@OneToMany
 	@JoinColumn
-	private City city;
+	private List<City> city;
 }
