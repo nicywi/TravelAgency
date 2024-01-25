@@ -64,5 +64,19 @@ CREATE TABLE IF NOT EXISTS purchases (
     adult_count INT,
     child_count INT,
     total_amount DECIMAL(10, 2),
-    FOREIGN KEY (trip_id) REFERENCES trips(id)
+    purchase_date DATE,
+    FOREIGN KEY (trip_id) REFERENCES trips(id),
+    CHECK (adult_count >= 0), -- Ensure non-negative counts
+    CHECK (child_count >= 0),
+    CHECK (adult_count + child_count > 0) -- At least one participant
     );
+
+CREATE TABLE IF NOT EXISTS participants (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    purchase_id BIGINT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    age INT,
+    is_adult BOOLEAN,
+    FOREIGN KEY (purchase_id) REFERENCES purchases(id)
+);
