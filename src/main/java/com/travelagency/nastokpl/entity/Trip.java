@@ -18,7 +18,7 @@ public class Trip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Long id;
 
 	@Column(name = "start_date")
 	private LocalDate startDate;
