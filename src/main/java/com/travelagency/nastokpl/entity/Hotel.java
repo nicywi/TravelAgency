@@ -22,10 +22,10 @@ public class Hotel {
 	@Column
 	private Integer stars;
 
-	@Column
+	@Column(length = 1000)
 	private String description;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 }

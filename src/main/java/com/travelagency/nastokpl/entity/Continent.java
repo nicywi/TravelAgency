@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+
+import java.util.List;
 
 @Entity
 @Table(name = "continents")
@@ -20,4 +21,7 @@ public class Continent {
 	@Column
 	private String name;
 
+	@OneToMany
+	@JoinColumn
+	private List<Country> country;
 }

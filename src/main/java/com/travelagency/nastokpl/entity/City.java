@@ -21,15 +21,23 @@ public class City {
 	@Column
 	private String name;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "country_id")
-	private List<Country> countries;
+	private Country country;
 
-	@OneToOne
+	@OneToMany
 	@JoinColumn(name = "airport_id")
-	private Airport airport;
+	private List<Airport> airport;
 
-	@OneToOne
+	@OneToMany
 	@JoinColumn(name = "hotel_id")
-	private Hotel hotel;
+	private List<Hotel> hotel;
+
+	@OneToMany
+	@JoinColumn
+	private List<Trip> departureCityId;
+
+	@OneToMany
+	@JoinColumn
+	private List<Trip> destinationCityId;
 }
