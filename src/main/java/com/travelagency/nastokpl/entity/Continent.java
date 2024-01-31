@@ -1,6 +1,8 @@
 package com.travelagency.nastokpl.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,16 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Continent {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer id;
-
-	@Column
-	private String name;
-
-	@OneToMany
-	@JoinColumn
+public class Continent extends EntityMappedSuperclass {
+	@OneToMany(mappedBy = "continent")
 	private List<Country> country;
 }

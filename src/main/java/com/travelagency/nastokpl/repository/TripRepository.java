@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -15,10 +14,10 @@ import java.util.List;
 public interface TripRepository extends JpaRepository<Trip, Long> {
 
 
-    List<Trip> findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
-            City departureCityId,
-            City destinationCityId,
-            LocalDate startDate,
-            LocalDate endDate
-    );
+	List<Trip> findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
+			City departureCityId,
+			City destinationCityId,
+			LocalDate startDate,
+			LocalDate endDate
+	);
 }
