@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "trips")
@@ -57,7 +58,6 @@ public class Trip {
 	@JoinColumn(name = "destination_city_id")
 	private City destinationCityId;
 
-	@OneToOne
-	@JoinColumn(name = "trip_id")
-	private Purchase purchase;
+	@OneToMany(mappedBy = "trip")
+	private List<Purchase> purchase;
 }

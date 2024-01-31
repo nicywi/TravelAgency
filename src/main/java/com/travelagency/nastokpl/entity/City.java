@@ -12,32 +12,20 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class City {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer id;
-
-	@Column
-	private String name;
-
+public class City extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
 
-	@OneToMany
-	@JoinColumn(name = "airport_id")
+	@OneToMany(mappedBy = "city")
 	private List<Airport> airport;
 
-	@OneToMany
-	@JoinColumn(name = "hotel_id")
+	@OneToMany(mappedBy = "city")
 	private List<Hotel> hotel;
 
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "departureCityId")
 	private List<Trip> departureCityId;
 
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "destinationCityId")
 	private List<Trip> destinationCityId;
 }

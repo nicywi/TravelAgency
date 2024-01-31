@@ -12,20 +12,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer id;
-
-	@Column
-	private String name;
-
+public class Country extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "continent_id")
-	private Continent continents;
+	private Continent continent;
 
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "country")
 	private List<City> city;
 }

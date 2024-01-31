@@ -10,15 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hotel {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer id;
-
-	@Column
-	private String name;
-
+public class Hotel extends EntityMappedSuperclass {
 	@Column
 	private Integer stars;
 
