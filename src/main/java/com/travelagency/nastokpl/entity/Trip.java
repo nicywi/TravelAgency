@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+
 @Table(name = "trips")
 @Data
 @NoArgsConstructor
