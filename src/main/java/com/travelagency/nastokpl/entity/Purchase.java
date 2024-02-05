@@ -43,6 +43,6 @@ public class Purchase {
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
 
-	@OneToMany(mappedBy = "purchase")
+	@OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
 	private List<Participant> participant;
 }

@@ -1,5 +1,7 @@
 package com.travelagency.nastokpl.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.travelagency.nastokpl.entity.Trip;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 @RestController
@@ -37,9 +40,9 @@ public class TripController {
 
     @DeleteMapping("delete/{id}")
     @ResponseBody
-    public ResponseEntity<String> deleteTrip(@PathVariable Long id) {
+    public ResponseEntity<String> deleteTripById(@PathVariable Long id) {
         try {
-            tripService.deleteTrip(id);
+            tripService.deleteTripById(id);
             return ResponseEntity.ok("Trip with ID " + id + " deleted successfully.");
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
@@ -48,9 +51,15 @@ public class TripController {
         }
     }
 
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) @JsonIgnore
     @GetMapping("/list")
     public ResponseEntity<List<Trip>> listTrips() {
         List<Trip> trips = tripService.getAllTrips();
         return new ResponseEntity<>(trips, HttpStatus.OK);
+    }
+    @GetMapping(path = "view/{id}")
+    public ResponseEntity<Optional<Trip>> getTripById(@PathVariable Long id) {
+        final Optional<Trip> tripById = tripService.getTripById(id);
+        return new ResponseEntity<>(tripById, HttpStatus.OK);
     }
 }
