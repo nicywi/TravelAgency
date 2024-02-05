@@ -66,4 +66,14 @@ public class TripService {
     public Optional<Trip> getTripById(Long id) {
         return tripRepository.findById(id);
     }
+
+    public List<Trip> searchTrips(String departureCity, String destinationCity, LocalDate startDate, LocalDate endDate, String tripType, Integer hotelStandard, Integer numberOfDays) {
+        if (departureCity == null && destinationCity == null && startDate == null && endDate == null && tripType == null && hotelStandard == null && numberOfDays == null) {
+            // Handle case when no criteria provided
+            return tripRepository.findAll();
+        } else {
+            // Handle case with provided criteria
+            return tripRepository.findByCriteria(departureCity, destinationCity, startDate, endDate, tripType, hotelStandard, numberOfDays);
+        }
+    }
 }
