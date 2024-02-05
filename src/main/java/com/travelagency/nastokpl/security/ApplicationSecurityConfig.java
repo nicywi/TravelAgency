@@ -1,5 +1,5 @@
 package com.travelagency.nastokpl.security;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,15 +17,14 @@ public class ApplicationSecurityConfig {
 	public UserDetailsService userDetailsService(PasswordConfig bCPE) {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(User.withUsername("admin")
-				.password(bCPE.passwordEncoder().encode("userPass"))
+				.password(bCPE.passwordEncoder().encode("adminPass"))
 				.roles("USER", "ADMIN")
 				.build());
 		manager.createUser(User.withUsername("user")
-				.password(bCPE.passwordEncoder().encode("adminPass"))
+				.password(bCPE.passwordEncoder().encode("userPass"))
 				.roles("USER")
 				.build());
 		return manager;
 	}
-
-
 }
+*/
