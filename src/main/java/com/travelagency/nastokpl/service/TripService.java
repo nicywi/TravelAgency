@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,7 +30,7 @@ public class TripService {
         tripRepository.save(trip);
     }
 
-    public void deleteTrip(Long id) {
+    public void deleteTripById(Long id) {
         if (tripRepository.existsById(id)) {
             tripRepository.deleteById(id);
         } else {
@@ -60,5 +61,9 @@ public class TripService {
         return tripRepository.findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
                 depCity, destCity, startDate, endDate
         );
+    }
+
+    public Optional<Trip> getTripById(Long id) {
+        return tripRepository.findById(id);
     }
 }

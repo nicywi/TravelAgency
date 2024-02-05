@@ -21,7 +21,8 @@ public class SearchController {
 
     @GetMapping
     public String showSearchForm() {
-        return "search";
+    // TODO: Logic to prepare data for the search form (e.g., dropdowns for cities, dates, etc.)
+        return "search"; //"search" is HTML name for the search form
     }
 
     @PostMapping
@@ -37,5 +38,21 @@ public class SearchController {
 
         return "searchResults";
     }
+
+//    @PostMapping("/results")
+//    public String searchTrips(@RequestParam(required = false) String departureCity,
+//                              @RequestParam(required = false) String destinationCity,
+//                              @RequestParam(required = false) String startDate,
+//                              @RequestParam(required = false) String endDate,
+//                              @RequestParam(required = false) String tripType,
+//                              @RequestParam(required = false) Integer hotelStandard,
+//                              @RequestParam(required = false) Integer numberOfDays,
+//                              Model model) {
+//        // Logic to search for trips based on the provided criteria
+//        List<Trip> searchResults = tripService.searchTrips(departureCity, destinationCity, startDate, endDate,
+//                tripType, hotelStandard, numberOfDays);
+//        model.addAttribute("searchResults", searchResults);
+//        return "search_results"; // "search_results" is a HTML name for displaying results
+//    }
 }
 
