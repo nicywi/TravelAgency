@@ -24,8 +24,9 @@ public class TripController {
 
     private final TripService tripService;
 
+    //@ModelAttribute("trip")
     @PostMapping("/add")
-    public ResponseEntity<String> addTrip(@ModelAttribute("trip") Trip trip) {
+    public ResponseEntity<String> addTrip(Trip trip) {
         tripService.addTrip(trip);
         return new ResponseEntity<>("Trip added successfully", HttpStatus.CREATED);
     }

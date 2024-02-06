@@ -22,11 +22,15 @@ public class TripService {
 
     private CityRepository cityRepository;
 
+//    public void addTrip(Trip trip) {
+//        tripRepository.findById(trip.getId())
+//                .ifPresent(t -> {
+//                    throw new IllegalArgumentException("Can't add trip with the same id");
+//                });
+//        tripRepository.save(trip);
+//    }
+
     public void addTrip(Trip trip) {
-        tripRepository.findById(trip.getId())
-                .ifPresent(t -> {
-                    throw new IllegalArgumentException("Can't add trip with the same id");
-                });
         tripRepository.save(trip);
     }
 
