@@ -28,9 +28,9 @@ public class City extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "city")
 	private List<Hotel> hotel;
 
-	@OneToMany(mappedBy = "departureCityId")
-	private List<Trip> departureCityId;
-
-	@OneToMany(mappedBy = "destinationCityId")
-	private List<Trip> destinationCityId;
+//	@OneToMany(mappedBy = "departureCityId")
+//	private List<Trip> departureCityId;
+//
+//	@OneToMany(mappedBy = "destinationCityId")
+//	private List<Trip> destinationCityId;
 }

@@ -5,16 +5,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-
 @Table(name = "trips")
 @Data
 @NoArgsConstructor
@@ -55,14 +52,14 @@ public class Trip {
 	@Column(name = "available_child_seats")
 	private Integer availableChildSeats;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "departure_city_id")
 	private City departureCityId;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "destination_city_id")
 	private City destinationCityId;
 
-	@OneToMany(mappedBy = "trip", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Purchase> purchase;
 }

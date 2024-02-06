@@ -22,6 +22,6 @@ public class Country extends EntityMappedSuperclass {
 	@JoinColumn(name = "continent_id")
 	private Continent continent;
 
-	@OneToMany(mappedBy = "country")
-	private List<City> city;
+//	@OneToMany(mappedBy = "country")
+//	private List<City> city;
 }
