@@ -12,12 +12,4 @@ import java.util.List;
 @Repository
 @ResponseBody
 public interface TripRepository extends JpaRepository<Trip, Long> {
-
-
-	List<Trip> findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
-			City departureCityId,
-			City destinationCityId,
-			LocalDate startDate,
-			LocalDate endDate
-	);
 }

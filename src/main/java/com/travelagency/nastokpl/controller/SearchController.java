@@ -5,10 +5,13 @@ import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 @RestController
 @RequestMapping("/search")
@@ -19,25 +22,32 @@ public class SearchController {
 
     private final TripService tripService;
 
-    @GetMapping
-    public String showSearchForm() {
-    // TODO: Logic to prepare data for the search form (e.g., dropdowns for cities, dates, etc.)
-        return "search"; //"search" is HTML name for the search form
-    }
-
-    @PostMapping
-    public String searchTrips(@RequestParam("departureCity") String departureCity,
-                              @RequestParam("destinationCity") String destinationCity,
-                              @RequestParam("departureDate") String departureDate,
-                              @RequestParam("returnDate") String returnDate,
-                              Model model) {
-
-        List<Trip> foundTrips = tripService.findTripsByCriteria(departureCity, destinationCity, departureDate, returnDate);
-
-        model.addAttribute("foundTrips", foundTrips);
-
-        return "searchResults";
-    }
+//    @GetMapping
+//    public String showSearchForm() {
+//    // TODO: Logic to prepare data for the search form (e.g., dropdowns for cities, dates, etc.)
+//        return "search"; //"search" is HTML name for the search form
+//    }
+//    @GetMapping("/search")
+//    public ResponseEntity<List<Trip>> searchTrips(
+//            @RequestParam(required = false) String availableAdultSeats,
+//            @RequestParam(required = false) String priceAdult
+//    ) {
+//        List<Trip> trips = tripService.findTripsByCriteria(availableAdultSeats, priceAdult);
+//        return new ResponseEntity<>(trips, HttpStatus.OK);
+//    }
+//    @PostMapping
+//    public String searchTrips(@RequestParam("departureCity") String departureCity,
+//                              @RequestParam("destinationCity") String destinationCity,
+//                              @RequestParam("departureDate") String departureDate,
+//                              @RequestParam("returnDate") String returnDate,
+//                              Model model) {
+//
+//        List<Trip> foundTrips = tripService.findTripsByCriteria(departureCity, destinationCity, departureDate, returnDate);
+//
+//        model.addAttribute("foundTrips", foundTrips);
+//
+//        return "searchResults";
+//    }
 
 //    @PostMapping("/results")
 //    public String searchTrips(@RequestParam(required = false) String departureCity,
