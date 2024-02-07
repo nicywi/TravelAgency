@@ -16,10 +16,10 @@ import java.util.List;
 @Entity
 @Table(name = "continents")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Continent extends EntityMappedSuperclass {
-	@OneToMany(mappedBy = "continent")
-	private List<Country> country;
+//	@OneToMany(mappedBy = "continent")
+//	private List<Country> country;
 }
