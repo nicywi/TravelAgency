@@ -22,14 +22,6 @@ public class TripService {
 
     private CityRepository cityRepository;
 
-//    public void addTrip(Trip trip) {
-//        tripRepository.findById(trip.getId())
-//                .ifPresent(t -> {
-//                    throw new IllegalArgumentException("Can't add trip with the same id");
-//                });
-//        tripRepository.save(trip);
-//    }
-
     public void addTrip(Trip trip) {
         tripRepository.save(trip);
     }
@@ -50,24 +42,39 @@ public class TripService {
         }
     }
 
-
     public List<Trip> getAllTrips() {
         return tripRepository.findAll();
     }
 
-    public List<Trip> findTripsByCriteria(String departureCity, String destinationCity, String departureDate, String returnDate) {
-        LocalDate startDate = LocalDate.parse(departureDate);
-        LocalDate endDate = LocalDate.parse(returnDate);
-
-        City depCity = cityRepository.findByName(departureCity);
-        City destCity = cityRepository.findByName(destinationCity);
-
-        return tripRepository.findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
-                depCity, destCity, startDate, endDate
-        );
-    }
+//    public List<Trip> findTripsByCriteria(String departureCity, String destinationCity, String departureDate, String returnDate) {
+//        LocalDate startDate = LocalDate.parse(departureDate);
+//        LocalDate endDate = LocalDate.parse(returnDate);
+//
+//        City depCity = cityRepository.findByName(departureCity);
+//        City destCity = cityRepository.findByName(destinationCity);
+//
+//        return tripRepository.findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
+//                depCity, destCity, startDate, endDate
+//        );
+//    }
 
     public Optional<Trip> getTripById(Long id) {
         return tripRepository.findById(id);
     }
+
+//    public List<Trip> findTripsByCriteria(String availableAdultSeats, String priceAdult) {
+//        if (availableAdultSeats != null && priceAdult != null) {
+//            // If both departureCity and destinationCity are provided, search for trips with matching departure and destination cities
+//            return tripRepository.findByDepartureCityNameAndDestinationCityName(availableAdultSeats, priceAdult);
+//        } else if (availableAdultSeats != null) {
+//            // If only departureCity is provided, search for trips with matching departure city
+//            return tripRepository.findByDepartureCityName(availableAdultSeats);
+//        } else if (priceAdult != null) {
+//            // If only destinationCity is provided, search for trips with matching destination city
+//            return tripRepository.findByDestinationCityName(priceAdult);
+//        } else {
+//            // If no criteria are provided, return all trips
+//            return tripRepository.findAll();
+//        }
+//    }
 }

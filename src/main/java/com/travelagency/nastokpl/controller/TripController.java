@@ -7,7 +7,9 @@ import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -25,15 +27,14 @@ public class TripController {
     private final TripService tripService;
 
     //@ModelAttribute("trip")
-    @PostMapping("/add")
-    public ResponseEntity<String> addTrip(Trip trip) {
+    @PostMapping(path ="/add", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> addTrip(@Validated @RequestBody final Trip trip) {
         tripService.addTrip(trip);
         return new ResponseEntity<>("Trip added successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit")
-    @ResponseBody
-    public ResponseEntity<String> updateTrip(@ModelAttribute("trip") Trip trip) {
+    @PutMapping(path = "/edit", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> updateTrip(@Validated @RequestBody final Trip trip) {
         tripService.updateTrip(trip);
         return new ResponseEntity<>("Trip updated successfully", HttpStatus.OK);
     }
@@ -57,6 +58,7 @@ public class TripController {
         List<Trip> trips = tripService.getAllTrips();
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
+
     @GetMapping(path = "view/{id}")
     public ResponseEntity<Optional<Trip>> getTripById(@PathVariable Long id) {
         final Optional<Trip> tripById = tripService.getTripById(id);

@@ -25,6 +25,7 @@ public class City extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "city")
 	private List<Airport> airport;
 
+	//It is optional in some cases - when departuring from a city, we dont need hotel
 	@OneToMany(mappedBy = "city")
 	private List<Hotel> hotel;
 
