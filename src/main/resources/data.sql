@@ -201,5 +201,8 @@ VALUES
     (5, 1, 0, 1200.00, '2024-01-03'),
     (4, 4, 0, 6000.00, '2024-01-06');
 
-
+INSERT INTO users (id, username, password, is_Account_mon_expired, is_account_non_locked, is_credentials_non_expired, is_enabled, authorities)
+VALUES
+    (1, 'test', 'pass', true, true, true, true, 'ADMIN'),
+    (2, 'testuser', 'pass', false, false, false, false, 'USER');
 

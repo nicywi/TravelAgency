@@ -20,6 +20,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Airport extends EntityMappedSuperclass {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private Integer id;
+	@Column
+	private String name;
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
@@ -29,3 +35,4 @@ public class Airport extends EntityMappedSuperclass {
 		return new AirportDTO(this.getId(), this.city != null ? this.city.toDTO() : null);
 	}
 }
+
