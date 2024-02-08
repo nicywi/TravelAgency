@@ -80,3 +80,14 @@ CREATE TABLE IF NOT EXISTS participants (
     is_adult BOOLEAN,
     FOREIGN KEY (purchase_id) REFERENCES purchases(id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    is_Account_mon_expired BOOLEAN DEFAULT FALSE,
+    is_account_non_locked BOOLEAN DEFAULT FALSE,
+    is_credentials_non_expired BOOLEAN DEFAULT FALSE,
+    is_enabled BOOLEAN DEFAULT FALSE,
+    authorities VARCHAR(5) DEFAULT 'USER'
+);
