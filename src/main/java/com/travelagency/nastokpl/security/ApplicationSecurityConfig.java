@@ -1,5 +1,8 @@
 package com.travelagency.nastokpl.security;
 
+import com.travelagency.nastokpl.model.Authority;
+import com.travelagency.nastokpl.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,32 +23,34 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity(securedEnabled = true,
 		jsr250Enabled = true)
 public class ApplicationSecurityConfig{
+//	@Autowired
+//	private UserRepository userRepository;
 	@Bean
 	public UserDetailsService userDetailsService(PasswordConfig bCPE) {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(User.withUsername("admin")
-				.password(bCPE.passwordEncoder().encode("adminPass"))
-				.roles("USER", "ADMIN")
-				.build());
+			.password(bCPE.passwordEncoder().encode("adminPass"))
+			.roles("USER", "ADMIN")
+			.build());
 		manager.createUser(User.withUsername("user")
-				.password(bCPE.passwordEncoder().encode("userPass"))
-				.roles("USER")
-				.build());
+			.password(bCPE.passwordEncoder().encode("userPass"))
+			.roles("USER")
+			.build());
 		return manager;
 	}
 
 	@Bean
 	public SecurityFilterChain filterChain( HttpSecurity http) throws Exception {
 		http.csrf(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-								.requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-								.requestMatchers("/admin/**").hasAnyRole("ADMIN")
-								.requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-								.requestMatchers("/login/**").permitAll()
-								.anyRequest().authenticated())
-				.httpBasic(Customizer.withDefaults())
-				.sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+			.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+				.requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+				.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+				.requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+				.requestMatchers("/login/**").permitAll()
+				.anyRequest().authenticated())
+			.httpBasic(Customizer.withDefaults())
+			.sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 		return http.build();
 	}
