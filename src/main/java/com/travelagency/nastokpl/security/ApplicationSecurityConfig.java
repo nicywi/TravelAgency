@@ -1,8 +1,5 @@
 package com.travelagency.nastokpl.security;
 
-import com.travelagency.nastokpl.model.Authority;
-import com.travelagency.nastokpl.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -23,8 +20,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity(securedEnabled = true,
 		jsr250Enabled = true)
 public class ApplicationSecurityConfig{
-//	@Autowired
-//	private UserRepository userRepository;
 	@Bean
 	public UserDetailsService userDetailsService(PasswordConfig bCPE) {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
@@ -38,7 +33,7 @@ public class ApplicationSecurityConfig{
 			.build());
 		return manager;
 	}
-
+	// datasource sdo sprawdzenia
 	@Bean
 	public SecurityFilterChain filterChain( HttpSecurity http) throws Exception {
 		http.csrf(AbstractHttpConfigurer::disable)

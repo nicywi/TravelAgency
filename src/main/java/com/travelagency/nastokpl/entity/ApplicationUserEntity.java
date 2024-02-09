@@ -1,6 +1,7 @@
 package com.travelagency.nastokpl.entity;
 
 import com.travelagency.nastokpl.model.Authority;
+import com.travelagency.nastokpl.model.ApplicationUserEntityDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.util.Collections;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class ApplicationUserEntity implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,7 +28,7 @@ public class User implements UserDetails {
 	@Column
 	private String password;
 
-	@Column(name = "is_Account_mon_expired")
+	@Column(name = "is_account_mon_expired")
 	private boolean isAccountNonExpired;
 
 	@Column(name = "is_account_non_locked")
@@ -65,5 +66,9 @@ public class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return isEnabled;
+	}
+
+	public ApplicationUserEntityDTO toDTO() {
+		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
 	}
 }
