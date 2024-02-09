@@ -1,5 +1,6 @@
 package com.travelagency.nastokpl.auth;
-/*
+
+import com.travelagency.nastokpl.entity.ApplicationUserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,48 +9,40 @@ import java.util.Collection;
 
 @AllArgsConstructor
 public class ApplicationUser implements UserDetails {
-
-	private final String username;
-	private final String password;
-	private final Collection<? extends GrantedAuthority> grantedAuthorities;
-	private final boolean isAccountNonExpired;
-	private final boolean isAccountNonLocked;
-	private final boolean isCredentialsNonExpired;
-	private final boolean isEnabled;
+	private ApplicationUserEntity applicationUserEntity;
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return grantedAuthorities;
+	public Collection<? extends GrantedAuthority> getAuthorities (){
+		return applicationUserEntity.getAuthorities();
 	}
 
 	@Override
-	public String getPassword() {
-		return password;
+	public String getPassword (){
+		return applicationUserEntity.getPassword();
 	}
 
 	@Override
-	public String getUsername() {
-		return username;
+	public String getUsername (){
+		return applicationUserEntity.getUsername();
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
-		return isAccountNonExpired;
+	public boolean isAccountNonExpired (){
+		return applicationUserEntity.isAccountNonExpired();
 	}
 
 	@Override
-	public boolean isAccountNonLocked() {
-		return isAccountNonLocked;
+	public boolean isAccountNonLocked (){
+		return applicationUserEntity.isAccountNonLocked();
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() {
-		return isCredentialsNonExpired;
+	public boolean isCredentialsNonExpired (){
+		return applicationUserEntity.isCredentialsNonExpired();
 	}
 
 	@Override
-	public boolean isEnabled() {
-		return isEnabled;
+	public boolean isEnabled (){
+		return applicationUserEntity.isEnabled();
 	}
 }
-*/

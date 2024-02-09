@@ -1,12 +1,9 @@
 package com.travelagency.nastokpl.auth;
-/*
-import com.travelagency.nastokpl.entity.User;
-import org.springframework.stereotype.Repository;
+
+import com.travelagency.nastokpl.entity.ApplicationUserEntity;
 
 import java.util.Optional;
 
-@Repository
 public interface ApplicationUserDAO {
-	Optional<User> selectApplicationUserByUsername(final String username);
+	Optional<ApplicationUserEntity> selectApplicationUserByUsername (String username);
 }
-*/
