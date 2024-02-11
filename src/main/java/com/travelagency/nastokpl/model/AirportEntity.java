@@ -1,8 +1,8 @@
-package com.travelagency.nastokpl.model;
+package com.travelagency.nastokpl.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.travelagency.nastokpl.dto.AirportDTO;
+import com.travelagency.nastokpl.model.AirportDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,12 +19,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class AirportEntity extends EntityMappedSuperclass {
+public class Airport extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private CityEntity city;
 
-	public AirportDTO toDTO (){
+	public AirportDTO toDTO(){
 		return new AirportDTO(this.getId(), this.city != null ? this.city.toDTO() : null);
 	}
 }

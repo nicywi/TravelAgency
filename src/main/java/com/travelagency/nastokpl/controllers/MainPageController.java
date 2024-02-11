@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping
 @Slf4j
 @RequiredArgsConstructor
 public class MainPageController {
