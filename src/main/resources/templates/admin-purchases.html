@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Purchases</title>
+</head>
+<body>
+<h1>Admin Purchases</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Trip</th>
+    <th>Adults</th>
+    <th>Children</th>
+    <th>Total Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="purchase : ${purchasedTrips}">
+    <td th:text="${purchase.trip.destinationCityId.name}"></td>
+    <td th:text="${purchase.adultCount}"></td>
+    <td th:text="${purchase.childCount}"></td>
+    <td th:text="${purchase.totalAmount}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

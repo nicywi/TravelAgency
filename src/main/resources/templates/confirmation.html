@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmation</title>
+</head>
+<body>
+<h1>Confirmation</h1>
+<p>Trip: <span th:text="${trip.destinationCityId.name}"></span></p>
+<p>Number of Adults: <span th:text="${adultCount}"></span></p>
+<p>Number of Children: <span th:text="${childCount}"></span></p>
+<p>Total Price: <span th:text="${totalPrice}"></span></p>
+
+<p>Thank you for your purchase, have a nice trip!</p>
+</body>
+</html>
