@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Travel Agency</title>
+</head>
+<body>
+<section class="promoted-trips">
+    <h1>Promoted Trips</h1>
+    <ul>
+        <li th:each="trip : ${promotedTrips}">
+            <span th:text="${trip.destinationCityId.name}"></span>
+            <span th:text="${trip.startDate}"></span>
+            <span th:text="${trip.endDate}"></span>
+            <span th:text="${trip.durationDays}"></span>
+            <span th:text="${trip.mealType}"></span>
+        </li>
+    </ul>
+</section>
+
+<section class="upcoming-trips">
+    <h1>Upcoming Trips</h1>
+    <ul>
+        <li th:each="trip : ${upcomingTrips}">
+            <span th:text="${trip.destinationCityId.name}"></span>
+            <span th:text="${trip.startDate}"></span>
+            <span th:text="${trip.endDate}"></span>
+            <span th:text="${trip.durationDays}"></span>
+            <span th:text="${trip.mealType}"></span>
+            <span th:text="${trip.promoted}"></span>
+            <span th:text="${trip.availableAdultSeats}"></span>
+            <span th:text="${trip.availableChildSeats}"></span>
+        </li>
+    </ul>
+</section>
+
+<section class="recently-purchased-trips">
+    <h1>Recently Purchased Trips</h1>
+    <ul>
+        <li th:each="trip : ${recentlyPurchasedTrips}">
+            <span th:text="${trip.destinationCityId.name}"></span>
+            <span th:text="${trip.startDate}"></span>
+            <span th:text="${trip.endDate}"></span>
+            <span th:text="${trip.durationDays}"></span>
+            <span th:text="${trip.mealType}"></span>
+            <span th:text="${trip.promoted}"></span>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

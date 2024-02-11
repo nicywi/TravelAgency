@@ -1,7 +1,7 @@
 package com.travelagency.nastokpl.entity;
 
 import com.travelagency.nastokpl.model.Authority;
-import com.travelagency.nastokpl.model.ApplicationUserEntityDTO;
+//import com.travelagency.nastokpl.model.ApplicationUserEntityDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -68,7 +68,7 @@ public class ApplicationUserEntity implements UserDetails {
 		return isEnabled;
 	}
 
-	public ApplicationUserEntityDTO toDTO() {
-		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
-	}
+//	public ApplicationUserEntityDTO toDTO() {
+//		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
+//	}
 }
