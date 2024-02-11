@@ -41,7 +41,7 @@ public class Purchase {
 	private BigDecimal totalAmount;
 
 	@Column(name = "purchase_date")
-	private LocalDate purchaseDate;
+	private LocalDate date;
 
 	@ManyToOne
 	@JoinColumn(name = "trip_id")

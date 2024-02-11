@@ -53,7 +53,7 @@ public class TripController {
     }
 
     //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) @JsonIgnore
-    @GetMapping("/list")
+    @GetMapping(path ="/list")
     public ResponseEntity<List<Trip>> listTrips() {
         List<Trip> trips = tripService.getAllTrips();
         return new ResponseEntity<>(trips, HttpStatus.OK);
