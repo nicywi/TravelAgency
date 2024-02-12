@@ -1,8 +1,8 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.travelagency.nastokpl.model.CountryDTO;
+import com.travelagency.nastokpl.dto.CountryDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,16 +18,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Country extends EntityMappedSuperclass {
+public class CountryEntity extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "continent_id")
-	private Continent continent;
+	private ContinentEntity continent;
 
-	// Konwersja z encji na DTO
-	public CountryDTO toDTO() {
+	@OneToMany(mappedBy = "country")
+	private List<CityEntity> cities;
+
+	public CountryDTO toDTO(){
 		return new CountryDTO(this.getId(), this.getName());
 	}
-
-//	@OneToMany(mappedBy = "country")
-//	private List<City> city;
 }

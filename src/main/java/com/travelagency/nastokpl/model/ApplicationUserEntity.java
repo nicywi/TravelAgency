@@ -1,7 +1,6 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
-import com.travelagency.nastokpl.model.Authority;
-import com.travelagency.nastokpl.model.ApplicationUserEntityDTO;
+import com.travelagency.nastokpl.dto.ApplicationUserEntityDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,31 +43,31 @@ public class ApplicationUserEntity implements UserDetails {
 	private Authority authorities;
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities () {
+	public Collection<? extends GrantedAuthority> getAuthorities(){
 		return Collections.singleton(authorities);
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
+	public boolean isAccountNonExpired(){
 		return isAccountNonExpired;
 	}
 
 	@Override
-	public boolean isAccountNonLocked() {
+	public boolean isAccountNonLocked(){
 		return isAccountNonLocked;
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() {
+	public boolean isCredentialsNonExpired(){
 		return isCredentialsNonExpired;
 	}
 
 	@Override
-	public boolean isEnabled() {
+	public boolean isEnabled(){
 		return isEnabled;
 	}
 
-	public ApplicationUserEntityDTO toDTO() {
+	public ApplicationUserEntityDTO toDTO(){
 		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
 	}
 }

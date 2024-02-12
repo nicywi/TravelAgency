@@ -1,8 +1,6 @@
-package com.travelagency.nastokpl.controller;
+package com.travelagency.nastokpl.controllers;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.travelagency.nastokpl.entity.Trip;
+import com.travelagency.nastokpl.model.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,13 +26,13 @@ public class TripController {
 
     //@ModelAttribute("trip")
     @PostMapping(path ="/add", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addTrip(@Validated @RequestBody final Trip trip) {
+    public ResponseEntity<String> addTrip(@Validated @RequestBody final TripEntity trip) {
         tripService.addTrip(trip);
         return new ResponseEntity<>("Trip added successfully", HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/edit", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> updateTrip(@Validated @RequestBody final Trip trip) {
+    public ResponseEntity<String> updateTrip(@Validated @RequestBody final TripEntity trip) {
         tripService.updateTrip(trip);
         return new ResponseEntity<>("Trip updated successfully", HttpStatus.OK);
     }
@@ -54,14 +52,14 @@ public class TripController {
 
     //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) @JsonIgnore
     @GetMapping("/list")
-    public ResponseEntity<List<Trip>> listTrips() {
-        List<Trip> trips = tripService.getAllTrips();
+    public ResponseEntity<List<TripEntity>> listTrips() {
+        List<TripEntity> trips = tripService.getAllTrips();
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
 
     @GetMapping(path = "view/{id}")
-    public ResponseEntity<Optional<Trip>> getTripById(@PathVariable Long id) {
-        final Optional<Trip> tripById = tripService.getTripById(id);
+    public ResponseEntity<Optional<TripEntity>> getTripById(@PathVariable Long id) {
+        final Optional<TripEntity> tripById = tripService.getTripById(id);
         return new ResponseEntity<>(tripById, HttpStatus.OK);
     }
 }

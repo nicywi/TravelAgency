@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -16,7 +16,7 @@ public abstract class EntityMappedSuperclass {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Long id;
 	@Column
 	private String name;
 }

@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Participant {
+public class ParticipantEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Long id;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -26,12 +26,12 @@ public class Participant {
 	private String lastName;
 
 	@Column
-	private Long age;
+	private Integer age;
 
 	@Column(name = "is_adult")
 	private Boolean isAdult;
 
 	@ManyToOne
 	@JoinColumn(name = "purchase_id")
-	private Purchase purchase;
+	private PurchaseEntity purchase;
 }
