@@ -24,7 +24,7 @@ public class AirportEntity extends EntityMappedSuperclass {
 	@JoinColumn(name = "city_id")
 	private CityEntity city;
 
-	public AirportDTO toDTO(){
+	public AirportDTO toDTO (){
 		return new AirportDTO(this.getId(), this.city != null ? this.city.toDTO() : null);
 	}
 }

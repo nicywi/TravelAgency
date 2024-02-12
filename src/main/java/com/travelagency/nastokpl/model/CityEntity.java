@@ -37,7 +37,7 @@ public class CityEntity extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "departureCityId")
 	private List<TripEntity> departureCityId;
 
-	public CityDTO toDTO(){
+	public CityDTO toDTO() {
 		List<AirportDTO> airportDTOs = this.airports != null ? this.airports.stream().map(AirportEntity::toDTO).collect(Collectors.toList()) : null;
 		List<HotelDTO> hotelDTOs = this.hotels != null ? this.hotels.stream().map(HotelEntity::toDTO).collect(Collectors.toList()) : null;
 		CountryDTO countryDTO = this.country != null ? this.country.toDTO() : null;

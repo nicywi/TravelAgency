@@ -1,43 +1,45 @@
 package com.travelagency.nastokpl.controllers;
 
-import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
-
 @RestController
-@RequestMapping
+@RequestMapping("/search")
 @Slf4j
 @RequiredArgsConstructor
 public class SearchController {
 //    A controller that supports searching for trips according to given criteria.
 
-    private final SearchService searchService;
+    private final TripService tripService;
 
-    @GetMapping("/search")
-    public ResponseEntity<List<TripEntity>> searchTrips(
-            @RequestParam(required = false) Integer availableAdultSeats,
-            @RequestParam(required = false) BigDecimal priceAdult,
-            @RequestParam(required = false) LocalDate startDate,
-            @RequestParam(required = false) LocalDate endDate,
-            @RequestParam(required = false) Integer durationDays,
-            @RequestParam(required = false) String mealType,
-            @RequestParam(required = false) BigDecimal priceChild,
-            @RequestParam(required = false) Boolean promoted,
-            @RequestParam(required = false) Integer availableChildSeats,
-            @RequestParam(required = false) CityEntity departureCityId,
-            @RequestParam(required = false) CityEntity destinationCityId) {
-        List<TripEntity> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult, startDate, endDate,
-                durationDays, mealType, priceChild, promoted, availableChildSeats, departureCityId, destinationCityId);
-        return new ResponseEntity<>(trips, HttpStatus.OK);
-    }
+//    @GetMapping
+//    public String showSearchForm() {
+//    // TODO: Logic to prepare data for the search form (e.g., dropdowns for cities, dates, etc.)
+//        return "search"; //"search" is HTML name for the search form
+//    }
+//    @GetMapping("/search")
+//    public ResponseEntity<List<Trip>> searchTrips(
+//            @RequestParam(required = false) String availableAdultSeats,
+//            @RequestParam(required = false) String priceAdult
+//    ) {
+//        List<Trip> trips = tripService.findTripsByCriteria(availableAdultSeats, priceAdult);
+//        return new ResponseEntity<>(trips, HttpStatus.OK);
+//    }
+//    @PostMapping
+//    public String searchTrips(@RequestParam("departureCity") String departureCity,
+//                              @RequestParam("destinationCity") String destinationCity,
+//                              @RequestParam("departureDate") String departureDate,
+//                              @RequestParam("returnDate") String returnDate,
+//                              Model model) {
+//
+//        List<Trip> foundTrips = tripService.findTripsByCriteria(departureCity, destinationCity, departureDate, returnDate);
+//
+//        model.addAttribute("foundTrips", foundTrips);
+//
+//        return "searchResults";
+//    }
 
 //    @PostMapping("/results")
 //    public String searchTrips(@RequestParam(required = false) String departureCity,

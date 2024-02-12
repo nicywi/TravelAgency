@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Repository
 @ResponseBody
-public interface TripRepository extends JpaRepository<TripEntity, Long> {
+public interface TripRepository extends JpaRepository<TripEntity, Long>{
 }

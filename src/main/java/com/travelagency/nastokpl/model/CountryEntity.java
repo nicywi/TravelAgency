@@ -26,7 +26,7 @@ public class CountryEntity extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "country")
 	private List<CityEntity> cities;
 
-	public CountryDTO toDTO(){
+	public CountryDTO toDTO (){
 		return new CountryDTO(this.getId(), this.getName());
 	}
 }
