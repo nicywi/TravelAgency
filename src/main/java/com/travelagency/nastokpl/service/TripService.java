@@ -1,9 +1,8 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.entity.City;
-import com.travelagency.nastokpl.entity.Trip;
-import com.travelagency.nastokpl.repository.CityRepository;
-import com.travelagency.nastokpl.repository.TripRepository;
+import com.travelagency.nastokpl.model.TripEntity;
+import com.travelagency.nastokpl.repositories.CityRepository;
+import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,9 @@ public class TripService {
     @Autowired
     private TripRepository tripRepository;
 
-    public void addTrip(Trip trip) {
+    private CityRepository cityRepository;
+
+    public void addTrip(TripEntity trip) {
         tripRepository.save(trip);
     }
 
@@ -32,7 +33,7 @@ public class TripService {
         }
     }
 
-    public void updateTrip(Trip trip) {
+    public void updateTrip(TripEntity trip) {
         if (tripRepository.existsById(trip.getId())) {
             tripRepository.save(trip);
         } else {
@@ -40,12 +41,12 @@ public class TripService {
         }
     }
 
-    public List<Trip> getAllTrips() {
+    public List<TripEntity> getAllTrips() {
         return tripRepository.findAll();
     }
 
 
-    public Optional<Trip> getTripById(Long id) {
+    public Optional<TripEntity> getTripById(Long id) {
         return tripRepository.findById(id);
     }
 
