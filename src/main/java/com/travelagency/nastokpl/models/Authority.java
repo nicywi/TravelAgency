@@ -7,7 +7,8 @@ public enum Authority implements GrantedAuthority {
 	USER;
 
 	@Override
-	public String getAuthority(){
+	public String getAuthority (){
+
 		return this.name();
 	}
 	// code

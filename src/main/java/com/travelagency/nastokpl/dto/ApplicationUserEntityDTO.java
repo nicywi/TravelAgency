@@ -17,10 +17,11 @@ public class ApplicationUserEntityDTO {
 	public ApplicationUserEntity toEntity(){
 		ApplicationUserEntity user = new ApplicationUserEntity();
 		user.setUsername(this.username);
+
 		if (this.username != null){
 			user.setAuthorities(Authority.valueOf(this.authority.name()));
 		}
 		return user;
 	}
-	// code
+
 }
