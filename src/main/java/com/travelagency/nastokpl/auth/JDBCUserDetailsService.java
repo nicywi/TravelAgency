@@ -1,7 +1,7 @@
 package com.travelagency.nastokpl.auth;
 
-import com.travelagency.nastokpl.entity.ApplicationUserEntity;
-import com.travelagency.nastokpl.model.Authority;
+import com.travelagency.nastokpl.models.ApplicationUserEntity;
+import com.travelagency.nastokpl.models.Authority;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,18 +17,18 @@ import java.util.List;
 public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
 
-	public JDBCUserDetailsService (JdbcTemplate jdbcTemplate) {
+	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate){
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
-	public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 		List<ApplicationUserEntity> users = jdbcTemplate.query(
 				"SELECT * FROM users WHERE username = ?",
 				new Object[]{username},
 				new RowMapper<ApplicationUserEntity>() {
 					@Override
-					public ApplicationUserEntity mapRow (ResultSet rs, int rowNum) throws SQLException {
+					public ApplicationUserEntity mapRow(ResultSet rs, int rowNum) throws SQLException{
 						ApplicationUserEntity user = new ApplicationUserEntity();
 						user.setId(rs.getLong("id"));
 						user.setUsername(rs.getString("username"));
@@ -41,7 +41,7 @@ public class JDBCUserDetailsService implements UserDetailsService {
 						return user;
 					}
 				});
-		if (users.isEmpty()) {
+		if (users.isEmpty()){
 			throw new UsernameNotFoundException("User not found");
 		}
 		return new ApplicationUser(users.get(0));

@@ -1,9 +1,9 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.entity.Continent;
-import com.travelagency.nastokpl.entity.Country;
-import com.travelagency.nastokpl.entity.Trip;
-import com.travelagency.nastokpl.repository.TripRepository;
+import com.travelagency.nastokpl.models.ContinentEntity;
+import com.travelagency.nastokpl.models.CountryEntity;
+import com.travelagency.nastokpl.models.TripEntity;
+import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +20,11 @@ public class MainPageService {
     @Autowired
     private TripRepository tripRepository;
 
-    public List<Trip> getPromotedTrips() {
+    public List<TripEntity> getPromotedTrips() {
         return tripRepository.findTripsByPromotedIsTrue();
     }
 
-    public List<Trip> getUpcomingTrips() {
+    public List<TripEntity> getUpcomingTrips() {
         // Get current date
         LocalDate currentDate = LocalDate.now();
 
@@ -32,9 +32,9 @@ public class MainPageService {
         return tripRepository.findTripsByStartDateAfter(currentDate);
     }
 
-    public Map<Country, List<Trip>> getUpcomingTripsByCountry() {
+    public Map<CountryEntity, List<TripEntity>> getUpcomingTripsByCountry() {
         LocalDate currentDate = LocalDate.now();
-        List<Trip> upcomingTrips = tripRepository.findTripsByStartDateAfter(currentDate);
+        List<TripEntity> upcomingTrips = tripRepository.findTripsByStartDateAfter(currentDate);
 
         // Group upcoming trips by country <- for that need to add Country to Trip class?
 //        Map<Country, List<Trip>> tripsByCountry = upcomingTrips.stream()
@@ -44,9 +44,9 @@ public class MainPageService {
         return null;
     }
 
-    public Map<Continent, List<Trip>> getUpcomingTripsByContinent() {
+    public Map<ContinentEntity, List<TripEntity>> getUpcomingTripsByContinent() {
         LocalDate currentDate = LocalDate.now();
-        List<Trip> upcomingTrips = tripRepository.findTripsByStartDateAfter(currentDate);
+        List<TripEntity> upcomingTrips = tripRepository.findTripsByStartDateAfter(currentDate);
 
         // Group upcoming trips by country <- for that need to add Continent to Trip class?
 //        Map<Continent, List<Trip>> tripsByContinent= upcomingTrips.stream()
@@ -57,7 +57,7 @@ public class MainPageService {
     }
 
 
-    public List<Trip> getRecentlyPurchasedTrips() {
+    public List<TripEntity> getRecentlyPurchasedTrips() {
 
         LocalDate currentDate = LocalDate.now();
 
