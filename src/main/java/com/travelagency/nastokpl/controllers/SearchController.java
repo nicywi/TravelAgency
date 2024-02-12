@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 @RestController
-@RequestMapping("/search")
+@RequestMapping
 @Slf4j
 @RequiredArgsConstructor
 public class SearchController {
@@ -24,15 +24,6 @@ public class SearchController {
 
     private final SearchService searchService;
 
-//    @GetMapping("/search")
-//    public ResponseEntity<List<TripEntity>> searchTrips(
-//            @RequestParam(required = false) Integer availableAdultSeats,
-//            @RequestParam(required = false) BigDecimal priceAdult
-//    ) {
-//        List<TripEntity> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult);
-//        return new ResponseEntity<>(trips, HttpStatus.OK);
-//    }
-/*
     @GetMapping("/search")
     public ResponseEntity<List<TripEntity>> searchTrips(
             @RequestParam(required = false) Integer availableAdultSeats,
@@ -50,6 +41,6 @@ public class SearchController {
                 durationDays, mealType, priceChild, promoted, availableChildSeats, departureCityId, destinationCityId);
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
-*/
+
 }
 

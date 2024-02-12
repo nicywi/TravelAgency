@@ -1,7 +1,7 @@
 package com.travelagency.nastokpl.dto;
 
-import com.travelagency.nastokpl.model.ApplicationUserEntity;
-import com.travelagency.nastokpl.model.Authority;
+import com.travelagency.nastokpl.models.ApplicationUserEntity;
+import com.travelagency.nastokpl.models.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

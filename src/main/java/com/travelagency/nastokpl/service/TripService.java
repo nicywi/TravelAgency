@@ -1,13 +1,12 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.model.TripEntity;
+import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.repositories.CityRepository;
 import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;

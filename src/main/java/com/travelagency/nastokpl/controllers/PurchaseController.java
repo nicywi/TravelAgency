@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/purchase")
 @Slf4j
 @RequiredArgsConstructor
 public class PurchaseController {
@@ -32,7 +32,7 @@ public class PurchaseController {
         return "purchase-form";
     }
 
-    @PostMapping("/purchase")
+    @PostMapping("/confirm")
     public String confirmPurchase(@RequestParam("tripId") Long tripId,
                                   @RequestParam("adultCount") Integer adultCount,
                                   @RequestParam("childCount") Integer childCount,
