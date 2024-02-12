@@ -1,8 +1,8 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.entity.City;
-import com.travelagency.nastokpl.entity.Trip;
-import com.travelagency.nastokpl.repository.TripRepository;
+import com.travelagency.nastokpl.models.CityEntity;
+import com.travelagency.nastokpl.models.TripEntity;
+import com.travelagency.nastokpl.repositories.TripRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -26,8 +26,8 @@ public class SearchService {
 
     @Autowired
     private TripRepository tripRepository;
-
-//    public List<Trip> findTripsByCriteria(Integer availableAdultSeats, BigDecimal priceAdult) {
+//
+//    public List<TripEntity> findTripsByCriteria(Integer availableAdultSeats, BigDecimal priceAdult) {
 //        if (availableAdultSeats != null && priceAdult != null) {
 //            // If both availableSeats and adultPrice are provided, search for trips with matching criteria
 //            return tripRepository.findByAvailableAdultSeatsAndPriceAdult(availableAdultSeats, priceAdult);
@@ -47,13 +47,13 @@ public class SearchService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Trip> findTripsByCriteria(Integer availableAdultSeats, BigDecimal priceAdult, LocalDate startDate, LocalDate endDate,
-                                          Integer durationDays, String mealType, BigDecimal priceChild, Boolean promoted, Integer availableChildSeats, City departureCityId, City destinationCityId) {
+    public List<TripEntity> findTripsByCriteria(Integer availableAdultSeats, BigDecimal priceAdult, LocalDate startDate, LocalDate endDate,
+                                          Integer durationDays, String mealType, BigDecimal priceChild, Boolean promoted, Integer availableChildSeats, TripEntity departureCityId, TripEntity destinationCityId) {
 
 //        Criteria Builder Initialization
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Trip> criteriaQuery = criteriaBuilder.createQuery(Trip.class);
-        Root<Trip> root = criteriaQuery.from(Trip.class);
+        CriteriaQuery<TripEntity> criteriaQuery = criteriaBuilder.createQuery(TripEntity.class);
+        Root<TripEntity> root = criteriaQuery.from(TripEntity.class);
 
 //Constructing the Predicate
         List<Predicate> predicates = new ArrayList<>();
@@ -94,7 +94,7 @@ public class SearchService {
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
 //        Executing the Query
-        TypedQuery<Trip> query = entityManager.createQuery(criteriaQuery);
+        TypedQuery<TripEntity> query = entityManager.createQuery(criteriaQuery);
         return query.getResultList();
     }
 
