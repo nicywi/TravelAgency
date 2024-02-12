@@ -1,6 +1,6 @@
 package com.travelagency.nastokpl.controllers;
 
-import com.travelagency.nastokpl.model.TripEntity;
+import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

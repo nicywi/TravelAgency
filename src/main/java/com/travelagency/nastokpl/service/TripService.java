@@ -1,6 +1,6 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.model.TripEntity;
+import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.repositories.CityRepository;
 import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;

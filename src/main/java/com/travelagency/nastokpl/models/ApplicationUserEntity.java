@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.model;
+package com.travelagency.nastokpl.models;
 
 import com.travelagency.nastokpl.dto.ApplicationUserEntityDTO;
 import jakarta.persistence.*;

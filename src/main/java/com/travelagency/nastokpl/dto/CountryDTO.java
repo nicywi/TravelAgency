@@ -1,6 +1,6 @@
 package com.travelagency.nastokpl.dto;
 
-import com.travelagency.nastokpl.model.CountryEntity;
+import com.travelagency.nastokpl.models.CountryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

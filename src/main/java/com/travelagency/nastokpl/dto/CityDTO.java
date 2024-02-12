@@ -1,8 +1,8 @@
 package com.travelagency.nastokpl.dto;
 
-import com.travelagency.nastokpl.model.AirportEntity;
-import com.travelagency.nastokpl.model.CityEntity;
-import com.travelagency.nastokpl.model.HotelEntity;
+import com.travelagency.nastokpl.models.AirportEntity;
+import com.travelagency.nastokpl.models.CityEntity;
+import com.travelagency.nastokpl.models.HotelEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

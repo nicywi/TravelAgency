@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.model;
+package com.travelagency.nastokpl.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

@@ -1,6 +1,6 @@
 package com.travelagency.nastokpl.auth;
 
-import com.travelagency.nastokpl.model.ApplicationUserEntity;
+import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
