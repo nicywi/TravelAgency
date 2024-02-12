@@ -1,11 +1,11 @@
-package com.travelagency.nastokpl.repository;
+package com.travelagency.nastokpl.repositories;
 
-import com.travelagency.nastokpl.entity.Airport;
+import com.travelagency.nastokpl.model.HotelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Repository
 @ResponseBody
-public interface AirportRepository extends JpaRepository<Airport, Integer> {
+public interface HotelRepository extends JpaRepository<HotelEntity, Long> {
 }

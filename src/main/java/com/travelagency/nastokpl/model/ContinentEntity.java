@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -16,10 +16,10 @@ import java.util.List;
 @Entity
 @Table(name = "continents")
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Continent extends EntityMappedSuperclass {
-//	@OneToMany(mappedBy = "continent")
-//	private List<Country> country;
+public class ContinentEntity extends EntityMappedSuperclass {
+	@OneToMany(mappedBy = "continent")
+	private List<CountryEntity> countries;
 }

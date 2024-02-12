@@ -1,11 +1,12 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Trip {
+public class TripEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
@@ -54,12 +55,12 @@ public class Trip {
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "departure_city_id")
-	private City departureCityId;
+	private CityEntity departureCityId;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "destination_city_id")
-	private City destinationCityId;
+	private CityEntity destinationCityId;
 
 	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Purchase> purchase;
+	private List<PurchaseEntity> purchase;
 }

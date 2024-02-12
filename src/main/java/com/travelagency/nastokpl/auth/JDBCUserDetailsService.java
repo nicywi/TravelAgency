@@ -1,6 +1,6 @@
 package com.travelagency.nastokpl.auth;
 
-import com.travelagency.nastokpl.entity.ApplicationUserEntity;
+import com.travelagency.nastokpl.model.ApplicationUserEntity;
 import com.travelagency.nastokpl.model.Authority;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

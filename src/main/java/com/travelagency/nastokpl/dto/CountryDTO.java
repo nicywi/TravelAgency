@@ -1,5 +1,5 @@
-package com.travelagency.nastokpl.model;
-import com.travelagency.nastokpl.entity.Country;
+package com.travelagency.nastokpl.dto;
+import com.travelagency.nastokpl.model.CountryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CountryDTO {
-    private Integer id;
+    private Long id;
     private String name;
 
-    // Przykładowa metoda konwersji na encję (zakładając, że istnieje klasa Country)
-    public Country toEntity() {
-        Country country = new Country();
+    public CountryEntity toEntity() {
+        CountryEntity country = new CountryEntity();
         country.setId(this.id);
         country.setName(this.name);
         return country;

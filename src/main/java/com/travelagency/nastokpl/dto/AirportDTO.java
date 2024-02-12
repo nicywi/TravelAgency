@@ -1,6 +1,6 @@
-package com.travelagency.nastokpl.model;
+package com.travelagency.nastokpl.dto;
 
-import com.travelagency.nastokpl.entity.Airport;
+import com.travelagency.nastokpl.model.AirportEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AirportDTO {
-    private Integer id;
+    private Long id;
     private CityDTO city;
 
-    public Airport toEntity() {
-        Airport airport = new Airport();
+    public AirportEntity toEntity() {
+        AirportEntity airport = new AirportEntity();
         airport.setId(this.id);
         if (this.city != null) {
             airport.setCity(this.city.toEntity());

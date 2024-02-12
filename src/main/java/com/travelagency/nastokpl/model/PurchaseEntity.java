@@ -1,6 +1,5 @@
-package com.travelagency.nastokpl.entity;
+package com.travelagency.nastokpl.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -20,11 +19,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Purchase {
+public class PurchaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Long id;
 
 	@Column(name = "adult_count")
 	@Check(constraints = "adult_count >= 0")
@@ -45,9 +44,8 @@ public class Purchase {
 
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
-	private Trip trip;
+	private TripEntity trip;
 
 	@OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
-	private List<Participant> participant;
-
+	private List<ParticipantEntity> participant;
 }
