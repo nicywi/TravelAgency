@@ -28,7 +28,8 @@ public class HotelEntity extends EntityMappedSuperclass {
 	@JoinColumn(name = "city_id")
 	private CityEntity city;
 
-	public HotelDTO toDTO (){
+
+	public HotelDTO toDTO(){
 		CityDTO cityDTO = this.city != null ? this.city.toDTO() : null;
 		return new HotelDTO(this.getId(), this.stars, this.description, cityDTO);
 	}

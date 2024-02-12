@@ -70,5 +70,4 @@ public class ApplicationUserEntity implements UserDetails {
 	public ApplicationUserEntityDTO toDTO (){
 		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
 	}
-	// code
 }

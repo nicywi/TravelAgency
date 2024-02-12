@@ -32,7 +32,7 @@ public class PurchaseController {
         return "purchase-form";
     }
 
-    @PostMapping("/confirm")
+@PostMapping("/confirm")
     public String confirmPurchase(@RequestParam("tripId") Long tripId,
                                   @RequestParam("adultCount") Integer adultCount,
                                   @RequestParam("childCount") Integer childCount,
