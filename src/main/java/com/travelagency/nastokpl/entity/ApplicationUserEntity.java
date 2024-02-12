@@ -68,7 +68,4 @@ public class ApplicationUserEntity implements UserDetails {
 		return isEnabled;
 	}
 
-//	public ApplicationUserEntityDTO toDTO() {
-//		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
-//	}
 }

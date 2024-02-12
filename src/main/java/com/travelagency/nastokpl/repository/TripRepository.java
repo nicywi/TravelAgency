@@ -12,14 +12,6 @@ import java.util.List;
 @Repository
 @ResponseBody
 public interface TripRepository extends JpaRepository<Trip, Long>{
-    
-    //For SearchController
- 
-//    List<Trip> findByAvailableAdultSeatsAndPriceAdult(Integer availableAdultSeats, BigDecimal priceAdult);
-//
-//    List<Trip> findByAvailableAdultSeats(Integer availableAdultSeats);
-//
-//    List<Trip> findByPriceAdult(BigDecimal priceAdult);
 
     //For MainPageController
     List<Trip> findTripsByStartDateAfter(LocalDate currentDate);
