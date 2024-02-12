@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+
 @RestController
 @RequestMapping
 @Slf4j
@@ -20,15 +21,6 @@ public class SearchController {
 //    A controller that supports searching for trips according to given criteria.
 
     private final SearchService searchService;
-
-//    @GetMapping("/search")
-//    public ResponseEntity<List<Trip>> searchTrips(
-//            @RequestParam(required = false) Integer availableAdultSeats,
-//            @RequestParam(required = false) BigDecimal priceAdult
-//    ) {
-//        List<Trip> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult);
-//        return new ResponseEntity<>(trips, HttpStatus.OK);
-//    }
 
     @GetMapping("/search")
     public ResponseEntity<List<Trip>> searchTrips(
