@@ -28,4 +28,5 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>{
 
 
     List<TripEntity> findTripsByPromotedIsTrue();
+    // code
 }

@@ -29,4 +29,5 @@ public class CountryEntity extends EntityMappedSuperclass {
 	public CountryDTO toDTO (){
 		return new CountryDTO(this.getId(), this.getName());
 	}
+	// code
 }

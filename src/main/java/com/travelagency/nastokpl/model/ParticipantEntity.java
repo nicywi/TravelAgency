@@ -34,4 +34,5 @@ public class ParticipantEntity {
 	@ManyToOne
 	@JoinColumn(name = "purchase_id")
 	private PurchaseEntity purchase;
+	// code
 }

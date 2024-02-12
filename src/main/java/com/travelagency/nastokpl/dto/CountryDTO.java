@@ -1,5 +1,6 @@
 package com.travelagency.nastokpl.dto;
-import com.travelagency.nastokpl.model.CountryEntity;
+
+import com.travelagency.nastokpl.models.CountryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,13 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CountryDTO {
-    private Long id;
-    private String name;
+	private Long id;
+	private String name;
 
-    public CountryEntity toEntity() {
-        CountryEntity country = new CountryEntity();
-        country.setId(this.id);
-        country.setName(this.name);
-        return country;
-    }
+	public CountryEntity toEntity(){
+		CountryEntity country = new CountryEntity();
+		country.setId(this.id);
+		country.setName(this.name);
+		return country;
+	}
+	// code
 }
