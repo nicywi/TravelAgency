@@ -18,8 +18,6 @@ public class TripService {
     @Autowired
     private TripRepository tripRepository;
 
-    private CityRepository cityRepository;
-
     public void addTrip(TripEntity trip) {
         tripRepository.save(trip);
     }
@@ -44,35 +42,8 @@ public class TripService {
         return tripRepository.findAll();
     }
 
-//    public List<Trip> findTripsByCriteria(String departureCity, String destinationCity, String departureDate, String returnDate) {
-//        LocalDate startDate = LocalDate.parse(departureDate);
-//        LocalDate endDate = LocalDate.parse(returnDate);
-//
-//        City depCity = cityRepository.findByName(departureCity);
-//        City destCity = cityRepository.findByName(destinationCity);
-//
-//        return tripRepository.findTripsByDepartureCityIdAndDestinationCityIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(
-//                depCity, destCity, startDate, endDate
-//        );
-//    }
-
     public Optional<TripEntity> getTripById(Long id) {
         return tripRepository.findById(id);
     }
 
-//    public List<Trip> findTripsByCriteria(String availableAdultSeats, String priceAdult) {
-//        if (availableAdultSeats != null && priceAdult != null) {
-//            // If both departureCity and destinationCity are provided, search for trips with matching departure and destination cities
-//            return tripRepository.findByDepartureCityNameAndDestinationCityName(availableAdultSeats, priceAdult);
-//        } else if (availableAdultSeats != null) {
-//            // If only departureCity is provided, search for trips with matching departure city
-//            return tripRepository.findByDepartureCityName(availableAdultSeats);
-//        } else if (priceAdult != null) {
-//            // If only destinationCity is provided, search for trips with matching destination city
-//            return tripRepository.findByDestinationCityName(priceAdult);
-//        } else {
-//            // If no criteria are provided, return all trips
-//            return tripRepository.findAll();
-//        }
-//    }
 }
