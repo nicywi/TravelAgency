@@ -15,17 +15,17 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>{
 
     //For SearchController
 
-//    List<Trip> findByAvailableAdultSeatsAndPriceAdult(Integer availableAdultSeats, BigDecimal priceAdult);
+//    List<TripEntity> findByAvailableAdultSeatsAndPriceAdult(Integer availableAdultSeats, BigDecimal priceAdult);
 //
-//    List<Trip> findByAvailableAdultSeats(Integer availableAdultSeats);
+//    List<TripEntity> findByAvailableAdultSeats(Integer availableAdultSeats);
 //
-//    List<Trip> findByPriceAdult(BigDecimal priceAdult);
+//    List<TripEntity> findByPriceAdult(BigDecimal priceAdult);
 
     //For MainPageController
-    List<Trip> findTripsByStartDateAfter(LocalDate currentDate);
+    List<TripEntity> findTripsByStartDateAfter(LocalDate currentDate);
 
-    List<Trip> findTripsByPurchaseDateAfter(LocalDate startDate);
+    List<TripEntity> findTripsByPurchaseDateAfter(LocalDate startDate);
 
 
-    List<Trip> findTripsByPromotedIsTrue();
+    List<TripEntity> findTripsByPromotedIsTrue();
 }

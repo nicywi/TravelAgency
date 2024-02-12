@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.model;
+package com.travelagency.nastokpl.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -37,7 +37,10 @@ public class CityEntity extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "departureCityId")
 	private List<TripEntity> departureCityId;
 
-	public CityDTO toDTO() {
+	@OneToMany(mappedBy = "destinationCityId")
+	private List<TripEntity> destinationCityId;
+
+	public CityDTO toDTO(){
 		List<AirportDTO> airportDTOs = this.airports != null ? this.airports.stream().map(AirportEntity::toDTO).collect(Collectors.toList()) : null;
 		List<HotelDTO> hotelDTOs = this.hotels != null ? this.hotels.stream().map(HotelEntity::toDTO).collect(Collectors.toList()) : null;
 		CountryDTO countryDTO = this.country != null ? this.country.toDTO() : null;

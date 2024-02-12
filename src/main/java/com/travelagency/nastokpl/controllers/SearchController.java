@@ -1,6 +1,5 @@
 package com.travelagency.nastokpl.controllers;
 
-import com.travelagency.nastokpl.service.TripService;
 import com.travelagency.nastokpl.models.CityEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.SearchService;
@@ -8,7 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,16 +25,16 @@ public class SearchController {
     private final SearchService searchService;
 
 //    @GetMapping("/search")
-//    public ResponseEntity<List<Trip>> searchTrips(
+//    public ResponseEntity<List<TripEntity>> searchTrips(
 //            @RequestParam(required = false) Integer availableAdultSeats,
 //            @RequestParam(required = false) BigDecimal priceAdult
 //    ) {
-//        List<Trip> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult);
+//        List<TripEntity> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult);
 //        return new ResponseEntity<>(trips, HttpStatus.OK);
 //    }
-
+/*
     @GetMapping("/search")
-    public ResponseEntity<List<Trip>> searchTrips(
+    public ResponseEntity<List<TripEntity>> searchTrips(
             @RequestParam(required = false) Integer availableAdultSeats,
             @RequestParam(required = false) BigDecimal priceAdult,
             @RequestParam(required = false) LocalDate startDate,
@@ -42,12 +44,12 @@ public class SearchController {
             @RequestParam(required = false) BigDecimal priceChild,
             @RequestParam(required = false) Boolean promoted,
             @RequestParam(required = false) Integer availableChildSeats,
-            @RequestParam(required = false) City departureCityId,
-            @RequestParam(required = false) City destinationCityId) {
-        List<Trip> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult, startDate, endDate,
+            @RequestParam(required = false) CityEntity departureCityId,
+            @RequestParam(required = false) CityEntity destinationCityId) {
+        List<TripEntity> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult, startDate, endDate,
                 durationDays, mealType, priceChild, promoted, availableChildSeats, departureCityId, destinationCityId);
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
-
+*/
 }
 
