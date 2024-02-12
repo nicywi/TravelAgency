@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Repository
 @ResponseBody
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
+	// code
 }

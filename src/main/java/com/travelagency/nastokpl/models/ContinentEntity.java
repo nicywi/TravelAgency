@@ -22,4 +22,5 @@ import java.util.List;
 public class ContinentEntity extends EntityMappedSuperclass {
 	@OneToMany(mappedBy = "continent")
 	private List<CountryEntity> countries;
+	// code
 }

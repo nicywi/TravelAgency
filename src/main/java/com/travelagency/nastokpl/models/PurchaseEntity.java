@@ -48,4 +48,5 @@ public class PurchaseEntity {
 
 	@OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
 	private List<ParticipantEntity> participant;
+	// code
 }

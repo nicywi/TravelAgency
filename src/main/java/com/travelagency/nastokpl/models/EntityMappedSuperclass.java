@@ -19,4 +19,5 @@ public abstract class EntityMappedSuperclass {
 	private Long id;
 	@Column
 	private String name;
+	// code
 }

@@ -32,4 +32,5 @@ public class HotelEntity extends EntityMappedSuperclass {
 		CityDTO cityDTO = this.city != null ? this.city.toDTO() : null;
 		return new HotelDTO(this.getId(), this.stars, this.description, cityDTO);
 	}
+	// code
 }

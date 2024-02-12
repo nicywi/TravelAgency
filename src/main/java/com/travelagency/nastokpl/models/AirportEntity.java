@@ -29,5 +29,6 @@ public class AirportEntity extends EntityMappedSuperclass {
 	public AirportDTO toDTO(){
 		return new AirportDTO(this.getId(), this.city != null ? this.city.toDTO() : null);
 	}
+	// code
 }
 

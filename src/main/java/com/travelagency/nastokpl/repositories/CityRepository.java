@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 	CityEntity findByName(String city);
+	// code
 }
