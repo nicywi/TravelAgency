@@ -1,7 +1,7 @@
-package com.travelagency.nastokpl.controller;
+package com.travelagency.nastokpl.controllers;
 
-import com.travelagency.nastokpl.entity.Purchase;
-import com.travelagency.nastokpl.entity.Trip;
+import com.travelagency.nastokpl.models.PurchaseEntity;
+import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.PurchaseService;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/purchase")
+@RequestMapping
 @Slf4j
 @RequiredArgsConstructor
 public class PurchaseController {
@@ -26,21 +26,21 @@ public class PurchaseController {
 
     @GetMapping("/form")
     public String showPurchaseForm(@RequestParam("tripId") Long tripId, Model model) {
-        final Optional<Trip> trip = tripService.getTripById(tripId);
+        final Optional<TripEntity> trip = tripService.getTripById(tripId);
         model.addAttribute("trip", trip);
-        model.addAttribute("purchase", new Purchase());
+        model.addAttribute("purchase", new PurchaseEntity());
         return "purchase-form";
     }
 
-    @PostMapping("/confirm")
+    @PostMapping("/purchase")
     public String confirmPurchase(@RequestParam("tripId") Long tripId,
                                   @RequestParam("adultCount") Integer adultCount,
                                   @RequestParam("childCount") Integer childCount,
                                   Model model) {
-        Optional<Trip> optionalTrip = tripService.getTripById(tripId);
+        Optional<TripEntity> optionalTrip = tripService.getTripById(tripId);
 
         if (optionalTrip.isPresent()) {
-            Trip trip = optionalTrip.get();
+			TripEntity trip = optionalTrip.get();
 
             // Calculate total price based on number of adults and children
             BigDecimal totalPrice = trip.getPriceAdult().multiply(BigDecimal.valueOf(adultCount))
@@ -65,7 +65,7 @@ public class PurchaseController {
 
     @GetMapping("/admin")
     public String showAdminPurchases(Model model) {
-        List<Purchase> purchasedTrips = purchaseService.getAllPurchasedTrips();
+        List<PurchaseEntity> purchasedTrips = purchaseService.getAllPurchasedTrips();
         model.addAttribute("purchasedTrips", purchasedTrips);
         return "admin-purchases";
     }

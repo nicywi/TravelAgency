@@ -1,9 +1,9 @@
 package com.travelagency.nastokpl.service;
 
-import com.travelagency.nastokpl.entity.Purchase;
-import com.travelagency.nastokpl.entity.Trip;
-import com.travelagency.nastokpl.repository.PurchaseRepository;
-import com.travelagency.nastokpl.repository.TripRepository;
+import com.travelagency.nastokpl.models.PurchaseEntity;
+import com.travelagency.nastokpl.models.TripEntity;
+import com.travelagency.nastokpl.repositories.PurchaseRepository;
+import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class PurchaseService {
     private PurchaseRepository purchaseRepository;
 
     public void confirmPurchase(Long tripId, Integer adultCount, Integer childCount) {
-        Trip trip = tripRepository.findById(tripId)
+		TripEntity trip = tripRepository.findById(tripId)
                 .orElseThrow(() -> new IllegalArgumentException("Trip not found with ID: " + tripId));
 
         // Validate available seats
@@ -40,7 +40,7 @@ public class PurchaseService {
                 .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
 
         // Create and save purchase entity
-        Purchase purchase = new Purchase();
+		PurchaseEntity purchase = new PurchaseEntity();
         purchase.setTrip(trip);
         purchase.setAdultCount(adultCount);
         purchase.setChildCount(childCount);
@@ -49,7 +49,7 @@ public class PurchaseService {
         purchaseRepository.save(purchase);
     }
 
-    public List<Purchase> getAllPurchasedTrips() {
+    public List<PurchaseEntity> getAllPurchasedTrips() {
         return purchaseRepository.findAll();
     }
 }
