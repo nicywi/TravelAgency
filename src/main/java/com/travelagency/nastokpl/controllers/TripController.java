@@ -2,6 +2,7 @@ package com.travelagency.nastokpl.controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +29,13 @@ public class TripController {
     private final TripService tripService;
 
     //@ModelAttribute("trip")
-    @PostMapping(path ="/add", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addTrip(@Validated @RequestBody final TripEntity trip) {
         tripService.addTrip(trip);
         return new ResponseEntity<>("Trip added successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/edit", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> updateTrip(@Validated @RequestBody final TripEntity trip) {
         tripService.updateTrip(trip);
         return new ResponseEntity<>("Trip updated successfully", HttpStatus.OK);
@@ -53,13 +55,13 @@ public class TripController {
     }
 
     //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) @JsonIgnore
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<TripEntity>> listTrips() {
         List<TripEntity> trips = tripService.getAllTrips();
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
 
-    @GetMapping(path = "view/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<TripEntity>> getTripById(@PathVariable Long id) {
         final Optional<TripEntity> tripById = tripService.getTripById(id);
         return new ResponseEntity<>(tripById, HttpStatus.OK);
