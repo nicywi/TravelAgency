@@ -2,7 +2,9 @@ package com.travelagency.nastokpl.service;
 
 import com.travelagency.nastokpl.models.ContinentEntity;
 import com.travelagency.nastokpl.models.CountryEntity;
+import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
+import com.travelagency.nastokpl.repositories.PurchaseRepository;
 import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,20 @@ public class MainPageService {
     @Autowired
     private TripRepository tripRepository;
 
+    private PurchaseRepository purchaseRepository;
+
     public List<TripEntity> getPromotedTrips() {
         return tripRepository.findTripsByPromotedIsTrue();
     }
 
+    //Changed to 5 upcoming trips
     public List<TripEntity> getUpcomingTrips() {
         // Get current date
         LocalDate currentDate = LocalDate.now();
+        LocalDate futureDate = currentDate.plusDays(90);
 
         // Retrieve upcoming trips from the repository
-        return tripRepository.findTripsByStartDateAfter(currentDate);
+        return tripRepository.findTripsByStartDateBetween(currentDate, futureDate).stream().limit(5).toList();
     }
 
     public Map<CountryEntity, List<TripEntity>> getUpcomingTripsByCountry() {
@@ -57,12 +63,12 @@ public class MainPageService {
     }
 
 
-    public List<TripEntity> getRecentlyPurchasedTrips() {
+    public List<PurchaseEntity> getRecentlyPurchasedTrips() {
 
         LocalDate currentDate = LocalDate.now();
 
-        LocalDate startDate = currentDate.minusDays(7);
+        LocalDate startDate = currentDate.minusDays(40);
 
-        return tripRepository.findTripsByPurchaseDateAfter(startDate);
+        return purchaseRepository.findPurchaseByDateAfter(startDate);
     }
 }

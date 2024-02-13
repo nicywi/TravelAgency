@@ -20,5 +20,4 @@ public class AirportDTO {
 		}
 		return airport;
 	}
-	// code
 }

@@ -15,9 +15,8 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>{
     //For MainPageController
     List<TripEntity> findTripsByStartDateAfter(LocalDate currentDate);
 
-    List<TripEntity> findTripsByPurchaseDateAfter(LocalDate startDate);
-
-
     List<TripEntity> findTripsByPromotedIsTrue();
+
+    List<TripEntity> findTripsByStartDateBetween(LocalDate currentDate, LocalDate futureDate);
     // code
 }

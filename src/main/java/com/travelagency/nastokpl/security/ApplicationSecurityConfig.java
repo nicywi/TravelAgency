@@ -55,4 +55,5 @@ public class ApplicationSecurityConfig {
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**");
 	}
+
 }

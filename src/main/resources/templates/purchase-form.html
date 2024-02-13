@@ -6,22 +6,22 @@
 </head>
 <body>
 <h2>Trip Details</h2>
-<p th:text="'Destination: ' + ${trip.destinationCityId.name}"></p>
-<p th:text="'Start Date: ' + ${trip.startDate}"></p>
+<p th:text="'Destination: ' + ${trip}"></p>
+<p th:text="'Start Date: ' + ${trip}"></p>
 
 <h2>Purchase Form</h2>
 <!--action set to "/purchase", the form data will be submitted to the "/purchase" endpoint for processing.-->
-<form action="/purchase" method="post" th:object="${purchase}">
-  <input type="hidden" th:field="*{trip.id}" th:value="${trip.id}" />
-  <label for="adultCount">Number of Adults:</label>
-  <input type="number" id="adultCount" name="adultCount" required />
-  <br/>
-  <label for="childCount">Number of Children:</label>
-  <input type="number" id="childCount" name="childCount" required />
-  <br/>
-  <p>Total Price: <span th:text="${totalPrice}"></span></p>
-  <br/>
-  <button type="submit">Confirm Purchase</button>
-</form>
+<!--<form action="/purchase" method="post" th:object="${purchase}">-->
+<!--  <input type="hidden" th:field="*{trip.id}" th:value="${trip.id}" />-->
+<!--  <label for="adultCount">Number of Adults:</label>-->
+<!--  <input type="number" id="adultCount" name="adultCount" required />-->
+<!--  <br/>-->
+<!--  <label for="childCount">Number of Children:</label>-->
+<!--  <input type="number" id="childCount" name="childCount" required />-->
+<!--  <br/>-->
+<!--  <p>Total Price: <span th:text="${totalPrice}"></span></p>-->
+<!--  <br/>-->
+<!--  <button type="submit">Confirm Purchase</button>-->
+<!--</form>-->
 </body>
 </html>

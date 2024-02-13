@@ -63,5 +63,5 @@ public class TripEntity {
 
 	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PurchaseEntity> purchase;
-	// code
+
 }

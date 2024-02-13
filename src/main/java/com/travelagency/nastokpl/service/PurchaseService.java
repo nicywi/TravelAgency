@@ -52,4 +52,10 @@ public class PurchaseService {
     public List<PurchaseEntity> getAllPurchasedTrips() {
         return purchaseRepository.findAll();
     }
+
+    public List<PurchaseEntity> getRecentlyPurchasedTrips() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate pastDate = currentDate.minusDays(60);
+        return purchaseRepository.findPurchaseByDateBetween(pastDate, currentDate);
+    }
 }
