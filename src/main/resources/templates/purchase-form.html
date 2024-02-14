@@ -34,8 +34,7 @@
 <h2>Purchase Form</h2>
 <!--action set to "/purchase", the form data will be submitted to the "/purchase" endpoint for processing.-->
   <form action="@{/purchase}" method="post" th:object="${newPurchase}">
-
-  <input type="hidden" th:field="*{id}" th:value="${trip.id}" />
+  <input type="hidden" th:field="*{trip.id}" th:value="${newPurchase.trip.id}" />
   <label>
     Number of Adults:
     <input type="number" th:field="*{adultCount}" id="adultCount" required>

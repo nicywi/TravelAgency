@@ -35,13 +35,18 @@ public class PurchaseController {
         final Optional<TripEntity> trip = tripService.getTripById(id);
         TripEntity actualTrip = trip.orElseThrow(() -> new NoSuchElementException("Trip not found"));
 
+        PurchaseEntity newPurchase = new PurchaseEntity();
+        newPurchase.setTrip(actualTrip);
+
         model.addAttribute("message", "Buy Your dream holiday!");
         model.addAttribute("trip", actualTrip);
-        model.addAttribute("newPurchase", new PurchaseEntity());
+        model.addAttribute("newPurchase", newPurchase);
         System.out.println("Print after new Purchase created");
 
         return "purchase-form";
-    }
+    } // powyższe działa
+    // po naduszeniu "Comfirm purchase" ma sie wyświetlić stronka confirmation
+    //
 
     @PostMapping
     public String confirmPurchase(@ModelAttribute("newPurchase") final PurchaseEntity purchase,
