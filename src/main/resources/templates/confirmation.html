@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7993ea;
+            margin: 10px;
+            padding: 10px;
+        }
+
+    </style>
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
+<section class="confirmation">
+    <h2>Purchase Details</h2>
+    <br>
+    <p th:text="'Trip id: ' + ${purchaseInfo.getId()}"></p>
 
-</body>
-</html><!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Confirmation</title>
-</head>
-<body>
-<h1>Confirmation</h1>
-<p>Trip: <span th:text="${trip.destinationCityId.name}"></span></p>
-<p>Number of Adults: <span th:text="${adultCount}"></span></p>
-<p>Number of Children: <span th:text="${childCount}"></span></p>
-<p>Total Price: <span th:text="${totalPrice}"></span></p>
+    <p>Trip id: <span th:text="${purchaseInfo.getId()}"></span></p>
+    <p>Number of Adults: <span th:text="${purchaseInfo.getAdultCount()}"></span></p>
+    <p>Number of Children: <span th:text="${purchaseInfo.getChildCount()}"></span></p>
+    <p>Date: <span th:text="${purchaseInfo.getDate()}"></span></p>
+    <p>Total amount: <span th:text="${purchaseInfo.getTotalAmount()}"></span></p>
 
-<p>Thank you for your purchase, have a nice trip!</p>
+    <p>Thank you for your purchase, have a nice trip!</p>
+</section>
+
 </body>
 </html>
+

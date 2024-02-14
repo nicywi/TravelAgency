@@ -53,7 +53,7 @@ public class ApplicationSecurityConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**");
+		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**");
 	}
 
 }

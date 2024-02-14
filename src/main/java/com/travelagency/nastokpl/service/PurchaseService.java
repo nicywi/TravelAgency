@@ -16,36 +16,37 @@ import java.util.List;
 @Service
 public class PurchaseService {
 
-    @Autowired
     private PurchaseRepository purchaseRepository;
-//
-//    public void confirmPurchase(Long tripId, Integer adultCount, Integer childCount) {
-//		TripEntity trip = tripRepository.findById(tripId)
-//                .orElseThrow(() -> new IllegalArgumentException("Trip not found with ID: " + tripId));
-//
-//        // Validate available seats
-//        if (trip.getAvailableAdultSeats() < adultCount || trip.getAvailableChildSeats() < childCount) {
-//            throw new IllegalStateException("Not enough available seats for this trip");
-//        }
-//
-//        // Update available seats
-//        trip.setAvailableAdultSeats(trip.getAvailableAdultSeats() - adultCount);
-//        trip.setAvailableChildSeats(trip.getAvailableChildSeats() - childCount);
-//        tripRepository.save(trip);
-//
-//        // Calculate total price
-//        BigDecimal totalPrice = trip.getPriceAdult().multiply(BigDecimal.valueOf(adultCount))
-//                .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
-//
-//        // Create and save purchase entity
-//		PurchaseEntity purchase = new PurchaseEntity();
-//        purchase.setTrip(trip);
-//        purchase.setAdultCount(adultCount);
-//        purchase.setChildCount(childCount);
-//        purchase.setTotalAmount(totalPrice);
-//        purchase.setDate(LocalDate.now());
-//        purchaseRepository.save(purchase);
-//    }
+
+    private TripRepository tripRepository;
+
+    public void confirmPurchase(Long tripId, Integer adultCount, Integer childCount) {
+		TripEntity trip = tripRepository.findById(tripId)
+                .orElseThrow(() -> new IllegalArgumentException("Trip not found with ID: " + tripId));
+
+        // Validate available seats
+        if (trip.getAvailableAdultSeats() < adultCount || trip.getAvailableChildSeats() < childCount) {
+            throw new IllegalStateException("Not enough available seats for this trip");
+        }
+
+        // Update available seats
+        trip.setAvailableAdultSeats(trip.getAvailableAdultSeats() - adultCount);
+        trip.setAvailableChildSeats(trip.getAvailableChildSeats() - childCount);
+        tripRepository.save(trip);
+
+        // Calculate total price
+        BigDecimal totalPrice = trip.getPriceAdult().multiply(BigDecimal.valueOf(adultCount))
+                .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
+
+        // Create and save purchase entity
+		PurchaseEntity purchase = new PurchaseEntity();
+        purchase.setTrip(trip);
+        purchase.setAdultCount(adultCount);
+        purchase.setChildCount(childCount);
+        purchase.setTotalAmount(totalPrice);
+        purchase.setDate(LocalDate.now());
+        purchaseRepository.save(purchase);
+    }
 
     public List<PurchaseEntity> getAllPurchasedTrips() {
         return purchaseRepository.findAll();
