@@ -20,29 +20,50 @@
   <h2>Trip Details</h2>
   <p th:text="${message}"></p>
   <br>
+  <p th:text="'Trip id: ' + ${trip.id}"></p>
   <p th:text="'Start Date: ' + ${trip.startDate}"></p>
   <p th:text="'End Date: ' + ${trip.endDate}"></p>
   <p th:text="'Duration (days): ' + ${trip.durationDays}"></p>
   <p th:text="'Meal Type: ' + ${trip.mealType}"></p>
   <p th:text="'Promoted: ' + ${trip.promoted}"></p>
+  <p th:text="'Adult Price: ' + ${trip.priceAdult}"></p>
+  <p th:text="'Child Price: ' + ${trip.priceChild}"></p>
 </section>
 <section class="purchase-form-details">
 
 <h2>Purchase Form</h2>
 <!--action set to "/purchase", the form data will be submitted to the "/purchase" endpoint for processing.-->
-<form action="@{/purchase/form}" method="post" th:object="${newPurchase}">
+  <form action="@{/purchase}" method="post" th:object="${newPurchase}">
+
+  <input type="hidden" th:field="*{id}" th:value="${trip.id}" />
   <label>
     Number of Adults:
-    <input type="text" th:field="*{adultCount}">
+    <input type="number" th:field="*{adultCount}" id="adultCount" required>
   </label>
   <br/>
   <label>
     Number of Children:
-    <input type="text" th:field="*{childCount}">
+    <input type="number" th:field="*{childCount}" id="childCount" required>
   </label>
+  <br/>
+<!--  Dynamic price with JS when we get there?-->
+<!--  <p>Total price: <span id="totalPrice"></span></p>-->
   <br/>
   <button type="submit">Confirm Purchase</button>
 </form>
 </section>
 </body>
 </html>
+
+<!--<form action="/purchase" method="post" th:object="${newPurchase}">-->
+<!--  <input type="hidden" th:field="*{trip.id}" th:value="${trip.id}" />-->
+<!--  <label for="adultCount">Number of Adults:</label>-->
+<!--  <input type="number" id="adultCount" name="adultCount" required />-->
+<!--  <br/>-->
+<!--  <label for="childCount">Number of Children:</label>-->
+<!--  <input type="number" id="childCount" name="childCount" required />-->
+<!--  <br/>-->
+<!--  <p>Total Price: <span th:text="${totalPrice}"></span></p>-->
+<!--  <br/>-->
+<!--  <button type="submit">Confirm Purchase</button>-->
+<!--</form>-->

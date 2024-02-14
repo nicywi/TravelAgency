@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -29,25 +30,34 @@ public class PurchaseController {
 
     private final PurchaseService purchaseService;
 
-    @GetMapping("/form/{id}")
-    public String showPurchaseForm(@PathVariable Long id, Model model) {
+    @GetMapping
+    public String showPurchaseForm(@RequestParam Long id, Model model) {
         final Optional<TripEntity> trip = tripService.getTripById(id);
         TripEntity actualTrip = trip.orElseThrow(() -> new NoSuchElementException("Trip not found"));
 
         model.addAttribute("message", "Buy Your dream holiday!");
         model.addAttribute("trip", actualTrip);
         model.addAttribute("newPurchase", new PurchaseEntity());
+        System.out.println("Print after new Purchase created");
+
         return "purchase-form";
     }
-//    @GetMapping("/form")
-//    public String showPurchaseForm(Model model) {
-////        Optional<TripEntity> trip = tripService.getTripById(1L);
-//        TripEntity trip = new TripEntity(LocalDate.of(2024, 02,14), LocalDate.of(2024, 02, 20), 7, "HOHO", false);
-//        model.addAttribute("message", "Buy Your dream holiday!");
-//        model.addAttribute("trip", trip);
-//        model.addAttribute("newPurchase", new PurchaseEntity());
-//        return "purchase-form";
-//    }
+
+    @PostMapping
+    public String confirmPurchase(@ModelAttribute("newPurchase") final PurchaseEntity purchase,
+                                  final ModelMap modelMap) {
+
+        System.out.println("Print from confirmPurchase method");
+
+        // Confirm the purchase
+        purchaseService.confirmPurchase(purchase.getTrip().getId(), purchase.getAdultCount(), purchase.getChildCount());
+
+        // Pass data to the view
+        modelMap.addAttribute("purchaseInfo", purchase);
+
+        return "confirmation";
+    }
+
 
 //    @PostMapping("/confirm")
 //    public String confirmPurchase(@RequestParam("tripId") Long tripId,
@@ -79,29 +89,11 @@ public class PurchaseController {
 //        }
 //    }
 
-
     @GetMapping("/admin")
     public String showAdminPurchases(Model model) {
         List<PurchaseEntity> purchasedTrips = purchaseService.getAllPurchasedTrips();
         model.addAttribute("purchasedTrips", purchasedTrips);
         return "admin-purchases";
     }
-
-    //Tests - working with restcontroller
-//    @GetMapping(path = "/recently-purchased-trips")
-//    public List<PurchaseEntity> getRecentlyPurchasedTrips() {
-//        return purchaseService.getRecentlyPurchasedTrips();
-//    }
-
-//    @GetMapping(path = "/pur")
-//    public List<PurchaseEntity> showAllPurchasedTrips() {
-//        return purchaseService.getAllPurchasedTrips();
-//    }
-
-//    @GetMapping("/admin2")
-//    public ResponseEntity<List<PurchaseEntity>> listPurchases() {
-//        List<PurchaseEntity> purchases = purchaseService.getAllPurchasedTrips();
-//        return new ResponseEntity<>(purchases, HttpStatus.OK);
-//    }
 
 }
