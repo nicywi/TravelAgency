@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
@@ -27,13 +29,25 @@ public class PurchaseController {
 
     private final PurchaseService purchaseService;
 
-    @GetMapping("/form")
-    public String showPurchaseForm(@RequestParam("tripId") Long tripId, Model model) {
-        final Optional<TripEntity> trip = tripService.getTripById(tripId);
-        model.addAttribute("trip", trip);
-        model.addAttribute("purchase", new PurchaseEntity());
+    @GetMapping("/form/{id}")
+    public String showPurchaseForm(@PathVariable Long id, Model model) {
+        final Optional<TripEntity> trip = tripService.getTripById(id);
+        TripEntity actualTrip = trip.orElseThrow(() -> new NoSuchElementException("Trip not found"));
+
+        model.addAttribute("message", "Buy Your dream holiday!");
+        model.addAttribute("trip", actualTrip);
+        model.addAttribute("newPurchase", new PurchaseEntity());
         return "purchase-form";
     }
+//    @GetMapping("/form")
+//    public String showPurchaseForm(Model model) {
+////        Optional<TripEntity> trip = tripService.getTripById(1L);
+//        TripEntity trip = new TripEntity(LocalDate.of(2024, 02,14), LocalDate.of(2024, 02, 20), 7, "HOHO", false);
+//        model.addAttribute("message", "Buy Your dream holiday!");
+//        model.addAttribute("trip", trip);
+//        model.addAttribute("newPurchase", new PurchaseEntity());
+//        return "purchase-form";
+//    }
 
 //    @PostMapping("/confirm")
 //    public String confirmPurchase(@RequestParam("tripId") Long tripId,
