@@ -199,7 +199,7 @@ VALUES
     (3, 1, 0, 800.00, '2024-01-02'),
     (2, 2, 0, 1000.00, '2024-01-03'),
     (5, 1, 0, 1200.00, '2024-01-03'),
-    (4, 4, 0, 6000.00, '2024-01-06');
+    (4, 4, 0, 6000.00, '2024-02-06');
 
 INSERT INTO users (id, username, password, is_account_mon_expired, is_account_non_locked, is_credentials_non_expired, is_enabled, authorities)
 VALUES
