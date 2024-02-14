@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Purchase Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eac679;
+      margin: 10px;
+      padding: 10px;
+    }
+
+  </style>
+  <link rel="shortcut icon" href="#">
 </head>
 <body>
-<h2>Trip Details</h2>
-<p th:text="'Destination: ' + ${trip}"></p>
-<p th:text="'Start Date: ' + ${trip}"></p>
+<section class="trip-details">
+  <h2>Trip Details</h2>
+  <p th:text="${message}"></p>
+  <br>
+  <p th:text="'Start Date: ' + ${trip.startDate}"></p>
+  <p th:text="'End Date: ' + ${trip.endDate}"></p>
+  <p th:text="'Duration (days): ' + ${trip.durationDays}"></p>
+  <p th:text="'Meal Type: ' + ${trip.mealType}"></p>
+  <p th:text="'Promoted: ' + ${trip.promoted}"></p>
+</section>
+<section class="purchase-form-details">
 
 <h2>Purchase Form</h2>
 <!--action set to "/purchase", the form data will be submitted to the "/purchase" endpoint for processing.-->
-<!--<form action="/purchase" method="post" th:object="${purchase}">-->
-<!--  <input type="hidden" th:field="*{trip.id}" th:value="${trip.id}" />-->
-<!--  <label for="adultCount">Number of Adults:</label>-->
-<!--  <input type="number" id="adultCount" name="adultCount" required />-->
-<!--  <br/>-->
-<!--  <label for="childCount">Number of Children:</label>-->
-<!--  <input type="number" id="childCount" name="childCount" required />-->
-<!--  <br/>-->
-<!--  <p>Total Price: <span th:text="${totalPrice}"></span></p>-->
-<!--  <br/>-->
-<!--  <button type="submit">Confirm Purchase</button>-->
-<!--</form>-->
+<form action="@{/purchase/form}" method="post" th:object="${newPurchase}">
+  <label>
+    Number of Adults:
+    <input type="text" th:field="*{adultCount}">
+  </label>
+  <br/>
+  <label>
+    Number of Children:
+    <input type="text" th:field="*{childCount}">
+  </label>
+  <br/>
+  <button type="submit">Confirm Purchase</button>
+</form>
+</section>
 </body>
 </html>

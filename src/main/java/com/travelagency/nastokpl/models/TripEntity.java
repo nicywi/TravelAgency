@@ -64,4 +64,11 @@ public class TripEntity {
 	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PurchaseEntity> purchase;
 
+	public TripEntity(LocalDate startDate, LocalDate endDate, Integer durationDays, String mealType, Boolean promoted) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.durationDays = durationDays;
+		this.mealType = mealType;
+		this.promoted = promoted;
+	}
 }
