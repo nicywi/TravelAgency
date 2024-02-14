@@ -35,35 +35,35 @@ public class PurchaseController {
         return "purchase-form";
     }
 
-@PostMapping("/confirm")
-    public String confirmPurchase(@RequestParam("tripId") Long tripId,
-                                  @RequestParam("adultCount") Integer adultCount,
-                                  @RequestParam("childCount") Integer childCount,
-                                  Model model) {
-        Optional<TripEntity> optionalTrip = tripService.getTripById(tripId);
-
-        if (optionalTrip.isPresent()) {
-			TripEntity trip = optionalTrip.get();
-
-            // Calculate total price based on number of adults and children
-            BigDecimal totalPrice = trip.getPriceAdult().multiply(BigDecimal.valueOf(adultCount))
-                    .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
-
-            // Confirm the purchase
-            purchaseService.confirmPurchase(tripId, adultCount, childCount);
-
-            // Pass data to the view
-            model.addAttribute("trip", trip);
-            model.addAttribute("adultCount", adultCount);
-            model.addAttribute("childCount", childCount);
-            model.addAttribute("totalPrice", totalPrice);
-
-            return "redirect:/confirmation";
-        } else {
-            // Case where the trip with the specified ID does not exist
-            return "redirect:/error"; // Example: Redirect to an error page
-        }
-    }
+//    @PostMapping("/confirm")
+//    public String confirmPurchase(@RequestParam("tripId") Long tripId,
+//                                  @RequestParam("adultCount") Integer adultCount,
+//                                  @RequestParam("childCount") Integer childCount,
+//                                  Model model) {
+//        Optional<TripEntity> optionalTrip = tripService.getTripById(tripId);
+//
+//        if (optionalTrip.isPresent()) {
+//            TripEntity trip = optionalTrip.get();
+//
+//            // Calculate total price based on number of adults and children
+//            BigDecimal totalPrice = trip.getPriceAdult().multiply(BigDecimal.valueOf(adultCount))
+//                    .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
+//
+//            // Confirm the purchase
+//            purchaseService.confirmPurchase(tripId, adultCount, childCount);
+//
+//            // Pass data to the view
+//            model.addAttribute("trip", trip);
+//            model.addAttribute("adultCount", adultCount);
+//            model.addAttribute("childCount", childCount);
+//            model.addAttribute("totalPrice", totalPrice);
+//
+//            return "redirect:/confirmation";
+//        } else {
+//            // Case where the trip with the specified ID does not exist
+//            return "redirect:/error"; // Example: Redirect to an error page
+//        }
+//    }
 
 
     @GetMapping("/admin")
@@ -73,10 +73,21 @@ public class PurchaseController {
         return "admin-purchases";
     }
 
-    @GetMapping("/admin2")
-    public ResponseEntity<List<PurchaseEntity>> listPurchases() {
-        List<PurchaseEntity> purchases = purchaseService.getAllPurchasedTrips();
-        return new ResponseEntity<>(purchases, HttpStatus.OK);
-    }
+    //Tests - working with restcontroller
+//    @GetMapping(path = "/recently-purchased-trips")
+//    public List<PurchaseEntity> getRecentlyPurchasedTrips() {
+//        return purchaseService.getRecentlyPurchasedTrips();
+//    }
+
+//    @GetMapping(path = "/pur")
+//    public List<PurchaseEntity> showAllPurchasedTrips() {
+//        return purchaseService.getAllPurchasedTrips();
+//    }
+
+//    @GetMapping("/admin2")
+//    public ResponseEntity<List<PurchaseEntity>> listPurchases() {
+//        List<PurchaseEntity> purchases = purchaseService.getAllPurchasedTrips();
+//        return new ResponseEntity<>(purchases, HttpStatus.OK);
+//    }
 
 }
