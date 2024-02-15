@@ -22,7 +22,6 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 public class TripController {
-
 //    Controller responsible for configuring the tour offer by the administrator.
 //    It will contain actions for viewing, adding, editing and deleting trips.
 

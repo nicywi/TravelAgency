@@ -17,17 +17,21 @@
 </head>
 <body>
 <section class="confirmation">
-    <h2>Purchase Details</h2>
+    <h2>Purchase Confirmation</h2>
+    <h4>Trip Details</h4>
+    <p th:text="'Trip id: ' + ${purchaseInfo.trip.id}"></p>
+    <p>Trip id: <span th:text="${purchaseInfo.trip.id}"></span></p>
+    <p>Meal type: <span th:text="${purchaseInfo.trip.mealType}"></span></p>
+    <p>Adult price: <span th:text="${purchaseInfo.trip.priceAdult}"></span></p>
+    <p>Adult child: <span th:text="${purchaseInfo.trip.priceChild}"></span></p>
     <br>
-    <p th:text="'Trip id: ' + ${purchaseInfo.getId()}"></p>
-
-    <p>Trip id: <span th:text="${purchaseInfo.getId()}"></span></p>
+    <h4>Purchase Details</h4>
     <p>Number of Adults: <span th:text="${purchaseInfo.getAdultCount()}"></span></p>
     <p>Number of Children: <span th:text="${purchaseInfo.getChildCount()}"></span></p>
-    <p>Date: <span th:text="${purchaseInfo.getDate()}"></span></p>
+    <p>Purchase Date: <span th:text="${purchaseInfo.date}"></span></p>
     <p>Total amount: <span th:text="${purchaseInfo.getTotalAmount()}"></span></p>
 
-    <p>Thank you for your purchase, have a nice trip!</p>
+    <h5>Thank you for your purchase, have a nice trip!</h5>
 </section>
 
 </body>
