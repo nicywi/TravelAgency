@@ -39,6 +39,7 @@ public class ApplicationSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		http.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+						.requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**").permitAll()
 						.requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 						.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 						.requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
@@ -51,9 +52,9 @@ public class ApplicationSecurityConfig {
 		return http.build();
 	}
 
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**");
-	}
+//	@Bean
+//	public WebSecurityCustomizer webSecurityCustomizer() {
+//		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**");
+//	}
 
 }
