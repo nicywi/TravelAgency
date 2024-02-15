@@ -22,6 +22,7 @@ public class MainPageService {
     @Autowired
     private TripRepository tripRepository;
 
+    @Autowired
     private PurchaseRepository purchaseRepository;
 
     public List<TripEntity> getPromotedTrips() {

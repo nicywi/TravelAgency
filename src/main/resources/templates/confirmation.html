@@ -19,7 +19,6 @@
 <section class="confirmation">
     <h2>Purchase Confirmation</h2>
     <h4>Trip Details</h4>
-    <p th:text="'Trip id: ' + ${purchaseInfo.trip.id}"></p>
     <p>Trip id: <span th:text="${purchaseInfo.trip.id}"></span></p>
     <p>Meal type: <span th:text="${purchaseInfo.trip.mealType}"></span></p>
     <p>Adult price: <span th:text="${purchaseInfo.trip.priceAdult}"></span></p>
