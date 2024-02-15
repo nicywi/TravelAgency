@@ -1,7 +1,9 @@
 package com.travelagency.nastokpl.controllers;
 
+import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.MainPageService;
+import com.travelagency.nastokpl.service.PurchaseService;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,8 @@ public class MainPageController {
 
     private final MainPageService mainPageService;
 
+    private final PurchaseService purchaseService;
+
     @GetMapping
     public String showMainPage(Model model) {
         // Pobierz promowane wycieczki
@@ -29,13 +33,13 @@ public class MainPageController {
         List<TripEntity> upcomingTrips = mainPageService.getUpcomingTrips();
 
         // Pobierz ostatnio zakupione wycieczki
-//        List<PurchaseEntity> recentlyPurchasedTrips = purchaseService.getRecentlyPurchasedTrips();
+        List<PurchaseEntity> recentlyPurchasedTrips = purchaseService.getRecentlyPurchasedTrips();
 
         // Przekaż dane do widoku
         model.addAttribute("promotedTrips", promotedTrips);
         model.addAttribute("upcomingTrips", upcomingTrips);
-//        model.addAttribute("recentlyPurchasedTrips", recentlyPurchasedTrips);
-
+        model.addAttribute("recentlyPurchasedTrips", recentlyPurchasedTrips);
+//
         return "mainpage";
     }
 

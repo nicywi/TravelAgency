@@ -109,33 +109,32 @@
 
 </section>
 
-<!--<section class="recently-purchased-trips">-->
-<!--    <h1>Recently Purchased Trips</h1>-->
-<!--    <table class="table table-striped">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Start Date</th>-->
-<!--            <th>End Date</th>-->
-<!--            <th>Duration Days</th>-->
-<!--            <th>Meal Type</th>-->
-<!--            <th>Promoted</th>-->
-<!--            <th>Available Adult Seats</th>-->
-<!--            <th>Available Child Seats</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="purchase : ${recentlyPurchasedTrips}">-->
-<!--            <td th:text="${purchase.adultCount}"></td>-->
-<!--            <td th:text="${purchase.childCount}"></td>-->
-<!--            <td th:text="${purchase.date}"></td>-->
-<!--            <td th:text="${purchase.trip}"></td>-->
-<!--            <td th:text="${purchase.promoted}"></td>-->
-<!--            <td th:text="${purchase.availableAdultSeats}"></td>-->
-<!--            <td th:text="${purchase.availableChildSeats}"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</section>-->
+<section class="recently-purchased-trips">
+    <h1>Recently Purchased Trips</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Purchase Id</th>
+            <th>Purchase Date</th>
+            <th>Trip Id</th>
+            <th>Total price</th>
+            <th>Adult count</th>
+            <th>Child count</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="purchase : ${recentlyPurchasedTrips}">
+            <td th:text="${purchase.id}"></td>
+            <td th:text="${purchase.date}"></td>
+            <td th:text="${purchase.trip.id}"></td>
+            <td th:text="${purchase.totalAmount}"></td>
+            <td th:text="${purchase.adultCount}"></td>
+            <td th:text="${purchase.childCount}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 
 </body>
 </html>

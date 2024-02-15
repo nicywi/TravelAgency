@@ -16,12 +16,14 @@ import java.util.List;
 @Service
 public class PurchaseService {
 
+    @Autowired
     private PurchaseRepository purchaseRepository;
 
+    @Autowired
     private TripRepository tripRepository;
 
-    public void confirmPurchase(Long tripId, Integer adultCount, Integer childCount) {
-		TripEntity trip = tripRepository.findById(tripId)
+    public void confirmPurchase(Long tripId, Integer adultCount, Integer childCount, PurchaseEntity purchase) {
+        TripEntity trip = tripRepository.findById(tripId)
                 .orElseThrow(() -> new IllegalArgumentException("Trip not found with ID: " + tripId));
 
         // Validate available seats
@@ -39,7 +41,6 @@ public class PurchaseService {
                 .add(trip.getPriceChild().multiply(BigDecimal.valueOf(childCount)));
 
         // Create and save purchase entity
-		PurchaseEntity purchase = new PurchaseEntity();
         purchase.setTrip(trip);
         purchase.setAdultCount(adultCount);
         purchase.setChildCount(childCount);
