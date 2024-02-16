@@ -6,63 +6,110 @@
   <title>Purchase Form</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #eac679;
-      margin: 10px;
-      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #addebd;
+      margin: 20px;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #343a40;
+    }
+
+    label {
+      color: #6c757d;
+    }
+
+    .form-control {
+      border: 1px solid #ced4da;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .modal-content {
+      border-radius: 10px;
     }
 
   </style>
   <link rel="shortcut icon" href="#">
 </head>
 <body>
-<section class="trip-details">
-  <h2>Trip Details</h2>
-  <p th:text="${message}"></p>
-  <br>
-  <p th:text="'Trip id: ' + ${trip.id}"></p>
-  <p th:text="'Start Date: ' + ${trip.startDate}"></p>
-  <p th:text="'End Date: ' + ${trip.endDate}"></p>
-  <p th:text="'Duration (days): ' + ${trip.durationDays}"></p>
-  <p th:text="'Meal Type: ' + ${trip.mealType}"></p>
-  <p th:text="'Promoted: ' + ${trip.promoted}"></p>
-  <p th:text="'Adult Price: ' + ${trip.priceAdult}"></p>
-  <p th:text="'Child Price: ' + ${trip.priceChild}"></p>
-</section>
-<section class="purchase-form-details">
 
-<h2>Purchase Form</h2>
-<!--action set to "/purchase", the form data will be submitted to the "/purchase" endpoint for processing.-->
-  <form th:action="@{/purchase}" method="post" th:object="${newPurchase}">
-  <input type="hidden" th:field="*{trip.id}" th:value="${newPurchase.trip.id}" />
-  <label>
-    Number of Adults:
-    <input type="number" th:field="*{adultCount}" id="adultCount" required>
-  </label>
-  <br/>
-  <label>
-    Number of Children:
-    <input type="number" th:field="*{childCount}" id="childCount" required>
-  </label>
-  <br/>
-<!--  Dynamic price with JS when we get there?-->
-<!--  <p>Total price: <span id="totalPrice"></span></p>-->
-  <br/>
-  <button type="submit">Confirm Purchase</button>
-</form>
-</section>
+<div class="container">
+  <h2 class="mb-4">Trip Details</h2>
+  <div class="row">
+    <div class="col">
+      <p><strong>Trip ID:</strong> <span th:text="${trip.id}"></span></p>
+      <p><strong>Start Date:</strong> <span th:text="${trip.startDate}"></span></p>
+      <p><strong>End Date:</strong> <span th:text="${trip.endDate}"></span></p>
+      <p><strong>Duration (days):</strong> <span th:text="${trip.durationDays}"></span></p>
+      <p><strong>Meal Type:</strong> <span th:text="${trip.mealType}"></span></p>
+      <p><strong>Promoted:</strong> <span th:text="${trip.promoted}"></span></p>
+      <p><strong>Adult Price:</strong> <span th:text="${trip.priceAdult}"></span></p>
+      <p><strong>Child Price:</strong> <span th:text="${trip.priceChild}"></span></p>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2>Purchase Form</h2>
+  <form id="purchaseForm" th:action="@{/purchase}" method="post" th:object="${newPurchase}">
+    <input type="hidden" th:field="*{trip.id}" th:value="${newPurchase.trip.id}" />
+    <div class="mb-3">
+      <label for="adultCount" class="form-label">Number of Adults:</label>
+      <input type="number" class="form-control" id="adultCount" th:field="*{adultCount}" required>
+    </div>
+    <div class="mb-3">
+      <label for="childCount" class="form-label">Number of Children:</label>
+      <input type="number" class="form-control" id="childCount" th:field="*{childCount}" required>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchaseModal">Confirm Purchase</button>
+  </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="purchaseModalLabel">Confirm Purchase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to proceed with the purchase?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="proceedButton">Proceed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // JavaScript to submit the form when the "Proceed" button is clicked
+  document.getElementById("proceedButton").addEventListener("click", function() {
+    document.getElementById("purchaseForm").submit();
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<!--<form action="/purchase" method="post" th:object="${newPurchase}">-->
-<!--  <input type="hidden" th:field="*{trip.id}" th:value="${trip.id}" />-->
-<!--  <label for="adultCount">Number of Adults:</label>-->
-<!--  <input type="number" id="adultCount" name="adultCount" required />-->
-<!--  <br/>-->
-<!--  <label for="childCount">Number of Children:</label>-->
-<!--  <input type="number" id="childCount" name="childCount" required />-->
-<!--  <br/>-->
-<!--  <p>Total Price: <span th:text="${totalPrice}"></span></p>-->
-<!--  <br/>-->
-<!--  <button type="submit">Confirm Purchase</button>-->
-<!--</form>-->
