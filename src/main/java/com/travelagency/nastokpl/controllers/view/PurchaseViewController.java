@@ -1,4 +1,4 @@
-package com.travelagency.nastokpl.controllers;
+package com.travelagency.nastokpl.controllers.view;
 
 import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping("/purchase")
 @Slf4j
 @RequiredArgsConstructor
-public class PurchaseController {
+public class PurchaseViewController {
     //Controller handling the trip purchase process. It will contain methods for
     // displaying the purchase form, processing user input, and completing the transaction.
     private final TripService tripService;
