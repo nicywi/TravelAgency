@@ -1,8 +1,5 @@
-package com.travelagency.nastokpl.controllers;
+package com.travelagency.nastokpl.controllers.rest;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +14,10 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/trips")
+@RequestMapping("/api/trips")
 @Slf4j
 @RequiredArgsConstructor
-public class TripController {
+public class TripApiController {
 //    Controller responsible for configuring the tour offer by the administrator.
 //    It will contain actions for viewing, adding, editing and deleting trips.
 

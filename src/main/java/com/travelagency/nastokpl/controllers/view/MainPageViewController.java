@@ -1,10 +1,9 @@
-package com.travelagency.nastokpl.controllers;
+package com.travelagency.nastokpl.controllers.view;
 
 import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.MainPageService;
 import com.travelagency.nastokpl.service.PurchaseService;
-import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping("/home")
 @Slf4j
 @RequiredArgsConstructor
-public class MainPageController {
+public class MainPageViewController {
     //A controller that operates the main page of the system, which will present
     // promoted tours, upcoming tours, and recently purchased tours.
 

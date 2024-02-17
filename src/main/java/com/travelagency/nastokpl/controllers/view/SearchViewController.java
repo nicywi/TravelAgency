@@ -1,31 +1,35 @@
-package com.travelagency.nastokpl.controllers;
+package com.travelagency.nastokpl.controllers.view;
 
 import com.travelagency.nastokpl.models.CityEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.SearchService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-@RestController
-@RequestMapping
-@Slf4j
+
+@Controller
+@RequestMapping("/search")
 @RequiredArgsConstructor
-public class SearchController {
-//    A controller that supports searching for trips according to given criteria.
+@Slf4j
+public class SearchViewController {
 
     private final SearchService searchService;
 
-    @GetMapping("/search")
-    public ResponseEntity<List<TripEntity>> searchTrips(
+    @GetMapping
+    public String searchTrips(
             @RequestParam(required = false) Integer availableAdultSeats,
             @RequestParam(required = false) BigDecimal priceAdult,
             @RequestParam(required = false) LocalDate startDate,
@@ -36,11 +40,13 @@ public class SearchController {
             @RequestParam(required = false) Boolean promoted,
             @RequestParam(required = false) Integer availableChildSeats,
             @RequestParam(required = false) CityEntity departureCityId,
-            @RequestParam(required = false) CityEntity destinationCityId) {
+            @RequestParam(required = false) CityEntity destinationCityId,
+            Model model
+    ){
         List<TripEntity> trips = searchService.findTripsByCriteria(availableAdultSeats, priceAdult, startDate, endDate,
                 durationDays, mealType, priceChild, promoted, availableChildSeats, departureCityId, destinationCityId);
-        return new ResponseEntity<>(trips, HttpStatus.OK);
+
+        model.addAttribute("trips", trips);
+        return "search";
     }
-
 }
-
