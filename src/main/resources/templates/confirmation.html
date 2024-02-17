@@ -2,37 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Confirmation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #7993ea;
+            background-color: #799f78;
             margin: 10px;
             padding: 10px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2, h4, h5 {
+            color: #343a40;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 10px;
         }
 
     </style>
     <link rel="shortcut icon" href="#">
 </head>
 <body>
-<section class="confirmation">
-    <h2>Purchase Confirmation</h2>
-    <h4>Trip Details</h4>
-    <p>Trip id: <span th:text="${purchaseInfo.trip.id}"></span></p>
-    <p>Meal type: <span th:text="${purchaseInfo.trip.mealType}"></span></p>
-    <p>Adult price: <span th:text="${purchaseInfo.trip.priceAdult}"></span></p>
-    <p>Adult child: <span th:text="${purchaseInfo.trip.priceChild}"></span></p>
-    <br>
-    <h4>Purchase Details</h4>
-    <p>Number of Adults: <span th:text="${purchaseInfo.getAdultCount()}"></span></p>
-    <p>Number of Children: <span th:text="${purchaseInfo.getChildCount()}"></span></p>
-    <p>Purchase Date: <span th:text="${purchaseInfo.date}"></span></p>
-    <p>Total amount: <span th:text="${purchaseInfo.getTotalAmount()}"></span></p>
+<div class="container">
+    <h2 class="mb-4">Purchase Confirmation</h2>
+    <div class="trip-details">
+        <h4>Trip Details</h4>
+        <p><strong>Trip ID:</strong> <span th:text="${purchaseInfo.trip.id}"></span></p>
+        <p><strong>Meal Type:</strong> <span th:text="${purchaseInfo.trip.mealType}"></span></p>
+        <p><strong>Adult Price:</strong> <span th:text="${purchaseInfo.trip.priceAdult}"></span></p>
+        <p><strong>Child Price:</strong> <span th:text="${purchaseInfo.trip.priceChild}"></span></p>
+    </div>
+    <hr>
+    <div class="purchase-details">
+        <h4>Purchase Details</h4>
+        <p><strong>Number of Adults:</strong> <span th:text="${purchaseInfo.getAdultCount()}"></span></p>
+        <p><strong>Number of Children:</strong> <span th:text="${purchaseInfo.getChildCount()}"></span></p>
+        <p><strong>Purchase Date:</strong> <span th:text="${purchaseInfo.date}"></span></p>
+        <p><strong>Total Amount:</strong> <span th:text="${purchaseInfo.getTotalAmount()}"></span></p>
+    </div>
 
-    <h5>Thank you for your purchase, have a nice trip!</h5>
-</section>
-
+    <h5 class="mt-4">Thank you for your purchase, have a nice trip!</h5>
+</div>
 </body>
 </html>
-
