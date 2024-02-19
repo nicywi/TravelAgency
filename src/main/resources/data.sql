@@ -211,8 +211,8 @@ VALUES
     (1, 'test', 'pass', true, true, true, true),
     (2, 'testuser', 'pass', false, false, false, false);
 
-INSERT INTO user_authorities (id, user_id, authority_id)
+INSERT INTO user_authorities (user_id, authority_id)
 VALUES
-    (1,1,1),
-    (2,2,2);
+    (1,1),
+    (2,2);
 

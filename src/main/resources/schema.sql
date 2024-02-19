@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS authorities (
 );
 
 CREATE TABLE IF NOT EXISTS user_authorities (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT,
     authority_id BIGINT,
     FOREIGN KEY (user_id) REFERENCES users(id),
