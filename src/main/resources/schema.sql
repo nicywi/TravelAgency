@@ -88,6 +88,18 @@ CREATE TABLE IF NOT EXISTS users (
     is_Account_mon_expired BOOLEAN DEFAULT FALSE,
     is_account_non_locked BOOLEAN DEFAULT FALSE,
     is_credentials_non_expired BOOLEAN DEFAULT FALSE,
-    is_enabled BOOLEAN DEFAULT FALSE,
-    authorities VARCHAR(5) DEFAULT 'USER'
+    is_enabled BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS authorities (
+    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(5)
+);
+
+CREATE TABLE IF NOT EXISTS user_authorities (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT,
+    authority_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (authority_id) REFERENCES authorities(id)
 );

@@ -52,9 +52,9 @@ public class ApplicationSecurityConfig {
 		return http.build();
 	}
 
-//	@Bean
-//	public WebSecurityCustomizer webSecurityCustomizer() {
-//		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**");
-//	}
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> web.ignoring().requestMatchers("/js/**", "/images/**", "/trips/**", "/search/**", "/purchase/**", "/home/**", "/**");
+	}
 
 }

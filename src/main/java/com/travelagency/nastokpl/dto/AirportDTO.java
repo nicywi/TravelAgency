@@ -1,5 +1,6 @@
 package com.travelagency.nastokpl.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.travelagency.nastokpl.models.AirportEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;

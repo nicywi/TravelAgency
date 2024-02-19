@@ -201,8 +201,18 @@ VALUES
     (5, 1, 0, 1200.00, '2024-01-03'),
     (4, 4, 0, 6000.00, '2024-02-06');
 
-INSERT INTO users (id, username, password, is_account_mon_expired, is_account_non_locked, is_credentials_non_expired, is_enabled, authorities)
+INSERT INTO authorities (id, name)
 VALUES
-    (1, 'test', 'pass', true, true, true, true, 'ADMIN'),
-    (2, 'testuser', 'pass', false, false, false, false, 'USER');
+    ( 1, 'ADMIN' ),
+    (2, 'USER');
+
+INSERT INTO users (id, username, password, is_account_mon_expired, is_account_non_locked, is_credentials_non_expired, is_enabled)
+VALUES
+    (1, 'test', 'pass', true, true, true, true),
+    (2, 'testuser', 'pass', false, false, false, false);
+
+INSERT INTO user_authorities (id, user_id, authority_id)
+VALUES
+    (1,1,1),
+    (2,2,2);
 
