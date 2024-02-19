@@ -5,5 +5,5 @@ import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import java.util.Optional;
 
 public interface ApplicationUserDAO {
-	Optional<ApplicationUserEntity> selectApplicationUserByUsername(String username);
+	Optional<ApplicationUser> selectApplicationUserByUsername(String username);
 }
