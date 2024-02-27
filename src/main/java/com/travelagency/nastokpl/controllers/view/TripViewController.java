@@ -1,6 +1,5 @@
 package com.travelagency.nastokpl.controllers.view;
 
-import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -29,6 +29,17 @@ public class TripViewController {
         List<TripEntity> trips = tripService.getAllTrips();
         model.addAttribute("allTrips", trips);
         return "trips";
+    }
+
+    @GetMapping("/tripForm")
+    public String showAddTripForm(Model model) {
+        model.addAttribute("trip", new TripEntity());
+        return "trip-form";
+    }
+    @PostMapping(path = "/addTrip")
+    public String addTrip(@Validated @ModelAttribute("trip") TripEntity trip) {
+        tripService.addTrip(trip);
+        return "redirect:/trips";
     }
 
 }
