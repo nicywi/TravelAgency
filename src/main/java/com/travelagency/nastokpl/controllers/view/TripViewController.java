@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("/trips")
@@ -36,9 +37,15 @@ public class TripViewController {
         model.addAttribute("trip", new TripEntity());
         return "trip-form";
     }
+
     @PostMapping(path = "/addTrip")
     public String addTrip(@Validated @ModelAttribute("trip") TripEntity trip) {
         tripService.addTrip(trip);
+        return "redirect:/trips";
+    }
+    @PostMapping("/delete")
+    public String deleteTrip(@RequestParam("id") Long id) {
+        tripService.deleteTripById(id);
         return "redirect:/trips";
     }
 

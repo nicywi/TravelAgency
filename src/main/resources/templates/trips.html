@@ -22,7 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        button {
+        .button-add {
             margin: 10px 0 10px;
         }
     </style>
@@ -31,7 +31,7 @@
 <body>
 <section class="all-trips">
     <h1>All Trips</h1>
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/trips/tripForm'">ADD NEW TRIP</button>
+    <button type="button" class="btn btn-primary button-add" onclick="window.location.href='/trips/tripForm'">ADD NEW TRIP</button>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -42,6 +42,7 @@
             <th>Promoted</th>
             <th>Available Adult Seats</th>
             <th>Available Child Seats</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -53,6 +54,13 @@
             <td th:text="${trip.promoted}"></td>
             <td th:text="${trip.availableAdultSeats}"></td>
             <td th:text="${trip.availableChildSeats}"></td>
+
+            <td>
+                <form th:action="@{/trips/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${trip.id}"/>
+                    <button type="submit" class="btn btn-danger btn-sm">DELETE</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
