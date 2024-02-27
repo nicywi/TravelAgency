@@ -34,7 +34,6 @@ public class PurchaseViewController {
         PurchaseEntity newPurchase = new PurchaseEntity();
         newPurchase.setTrip(actualTrip);
 
-        model.addAttribute("message", "Buy Your dream holiday!");
         model.addAttribute("trip", actualTrip);
         model.addAttribute("newPurchase", newPurchase);
 
