@@ -42,7 +42,8 @@
             <th>Promoted</th>
             <th>Available Adult Seats</th>
             <th>Available Child Seats</th>
-            <th>Action</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -54,7 +55,12 @@
             <td th:text="${trip.promoted}"></td>
             <td th:text="${trip.availableAdultSeats}"></td>
             <td th:text="${trip.availableChildSeats}"></td>
-
+            <td>
+                <form th:action="@{/trips/update}" method="get">
+                    <input type="hidden" name="id" th:value="${trip.id}"/>
+                    <button type="submit" class="btn btn-secondary btn-sm">UPDATE</button>
+                </form>
+            </td>
             <td>
                 <form th:action="@{/trips/delete}" method="post">
                     <input type="hidden" name="id" th:value="${trip.id}"/>

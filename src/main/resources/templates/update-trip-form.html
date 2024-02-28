@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Trip Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #799f78;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #343a40;
+    }
+
+    label {
+      color: #6c757d;
+    }
+
+    .form-control {
+      border: 1px solid #ced4da;
+    }
+
+  </style>
+  <link rel="shortcut icon" href="#">
+</head>
+<body>
+<div class="container mt-4">
+  <h2>Update Trip Form</h2>
+  <div class="container">
+    <h2 class="mb-4">Trip Details</h2>
+    <div class="row">
+      <div class="col">
+        <p><strong>Trip ID:</strong> <span th:text="${oldTrip.id}"></span></p>
+        <p><strong>Start Date:</strong> <span th:text="${oldTrip.startDate}"></span></p>
+        <p><strong>End Date:</strong> <span th:text="${oldTrip.endDate}"></span></p>
+        <p><strong>Duration (days):</strong> <span th:text="${oldTrip.durationDays}"></span></p>
+        <p><strong>Meal Type:</strong> <span th:text="${oldTrip.mealType}"></span></p>
+        <p><strong>Promoted:</strong> <span th:text="${oldTrip.promoted}"></span></p>
+        <p><strong>Adult Price:</strong> <span th:text="${oldTrip.priceAdult}"></span></p>
+        <p><strong>Child Price:</strong> <span th:text="${oldTrip.priceChild}"></span></p>
+      </div>
+    </div>
+  </div>
+  <form id="updateTripForm" th:action="@{/trips/updateTrip}" method="post" th:object="${oldTrip}">
+    <input type="hidden" name="id" th:value="${oldTrip.id}"/>
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date:</label>
+<!--      <input type="date" class="form-control" id="startDate" th:field="*{startDate}">-->
+      <input type="date" class="form-control" id="startDate" th:field="*{startDate}" name="startDate" th:value="${oldTrip.startDate}">
+    </div>
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date:</label>
+      <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+    </div>
+    <div class="mb-3">
+      <label for="durationDays" class="form-label">Duration (in days):</label>
+      <input type="number" class="form-control" id="durationDays" th:field="*{durationDays}" name="durationDays" th:value="${oldTrip.durationDays}">
+    </div>
+<!--    <div class="mb-3">-->
+<!--      <label for="mealType" class="form-label">Meal type:</label>-->
+<!--      <input type="text" class="form-control" id="mealType" th:field="*{mealType}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="priceAdult" class="form-label">Price Adult:</label>-->
+<!--      <input type="number" class="form-control" id="priceAdult" th:field="*{priceAdult}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="priceChild" class="form-label">Price Child:</label>-->
+<!--      <input type="number" class="form-control" id="priceChild" th:field="*{priceChild}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="promoted" class="form-label">Promoted:</label>-->
+<!--      <input type="checkbox" class="form-control" id="promoted" th:field="*{promoted}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="availableAdultSeats" class="form-label">Available Adult Seats:</label>-->
+<!--      <input type="number" class="form-control" id="availableAdultSeats" th:field="*{availableAdultSeats}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="availableChildSeats" class="form-label">Available Child Seats:</label>-->
+<!--      <input type="number" class="form-control" id="availableChildSeats" th:field="*{availableChildSeats}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="departureCityId" class="form-label">Departure City id:</label>-->
+<!--      <input type="number" class="form-control" id="departureCityId" th:field="*{departureCityId}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="destinationCityId" class="form-label">Destination City id:</label>-->
+<!--      <input type="number" class="form-control" id="destinationCityId" th:field="*{destinationCityId}">-->
+<!--    </div>-->
+<!--    <input type="hidden" name="id" th:value="${trip.purchase}"/>-->
+    <button type="submit" class="btn btn-primary">Update Trip</button>
+  </form>
+</div>
+</body>
+</html>

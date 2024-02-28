@@ -5,6 +5,7 @@ import com.travelagency.nastokpl.service.TripService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/trips")
@@ -46,6 +48,20 @@ public class TripViewController {
     @PostMapping("/delete")
     public String deleteTrip(@RequestParam("id") Long id) {
         tripService.deleteTripById(id);
+        return "redirect:/trips";
+    }
+
+    @GetMapping("/update")
+    public String showUpdateTripForm(@RequestParam("id") Long id, Model model) {
+        final Optional<TripEntity> trip = tripService.getTripById(id);
+        TripEntity actualTrip = trip.orElseThrow(() -> new NoSuchElementException("Trip not found"));
+        model.addAttribute("oldTrip", actualTrip);
+        return "update-trip-form";
+    }
+
+    @PostMapping("/updateTrip")
+    public String updateTrip(@ModelAttribute("oldTrip") final TripEntity trip) {
+//        tripService.updateTrip(trip);
         return "redirect:/trips";
     }
 

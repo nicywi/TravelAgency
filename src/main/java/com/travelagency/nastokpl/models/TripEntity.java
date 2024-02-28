@@ -61,7 +61,7 @@ public class TripEntity {
 	@JoinColumn(name = "destination_city_id")
 	private CityEntity destinationCityId;
 
-	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<PurchaseEntity> purchase;
 
 	public TripEntity(LocalDate startDate, LocalDate endDate, Integer durationDays, String mealType, Boolean promoted) {
