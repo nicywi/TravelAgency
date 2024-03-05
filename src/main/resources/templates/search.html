@@ -5,6 +5,52 @@
     <title>Search for Trips</title>
 </head>
 <body>
+<form th:action="@{/search/showResults}" method="post">
+    <input type="number" name="availableAdultSeats" placeholder="Available Adult Seats"/><br>
+    <input type="number" name="priceAdult" placeholder="Price for Adult"/><br>
+    <input type="date" name="startDate" placeholder="Start Date"/><br>
+    <input type="date" name="endDate" placeholder="End Date"/><br>
+    <input type="number" name="durationDays" placeholder="Duration in Days"/><br>
+    <input type="text" name="mealType" placeholder="Meal Type"/><br>
+    <input type="number" name="priceChild" placeholder="Price for Child"/><br>
+    <input type="checkbox" name="promoted" value="true"/> Promoted<br>
+    <input type="number" name="availableChildSeats" placeholder="Available Child Seats"/><br>
+    <input type="text" name="departureCityId" placeholder="Departure City Id"/><br>
+    <input type="text" name="destinationCityId" placeholder="Destination City Id"/><br>
+    <button type="submit">Search</button>
+</form>
+
+<section>
+    <h1>Search Results</h1>
+    <table >
+        <thead>
+        <tr>
+            <th>Trip id</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Duration Days</th>
+            <th>Meal Type</th>
+            <th>Promoted</th>
+            <th>Available Adult Seats</th>
+            <th>Available Child Seats</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="trip : ${searchResults}">
+            <td th:text="${trip.id}"></td>
+            <td th:text="${trip.startDate}"></td>
+            <td th:text="${trip.endDate}"></td>
+            <td th:text="${trip.durationDays}"></td>
+            <td th:text="${trip.mealType}"></td>
+            <td th:text="${trip.promoted}"></td>
+            <td th:text="${trip.availableAdultSeats}"></td>
+            <td th:text="${trip.availableChildSeats}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</section>
 
 </body>
 </html>
