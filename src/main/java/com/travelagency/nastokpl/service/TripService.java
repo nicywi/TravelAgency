@@ -100,7 +100,7 @@ public class TripService {
 //            if (trip.getDepartureCityId() != null && !Objects.equals(existingTrip.getDepartureCityId(), trip.getDepartureCityId())) {
 //                existingTrip.setDepartureCityId(trip.getDepartureCityId());
 //            }
-            // Update other fields similarly
+            // Update other fields
 
             // Save the trip if any changes were made
             tripRepository.save(existingTrip);
