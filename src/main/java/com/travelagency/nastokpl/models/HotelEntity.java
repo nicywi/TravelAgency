@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class HotelEntity extends EntityMappedSuperclass {
+public final class HotelEntity extends EntityMappedSuperclass {
 	@Column
 	private Integer stars;
 

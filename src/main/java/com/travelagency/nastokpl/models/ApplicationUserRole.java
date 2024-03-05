@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class ApplicationUserRole extends EntityMappedSuperclass implements GrantedAuthority {
+public final class ApplicationUserRole extends EntityMappedSuperclass implements GrantedAuthority {
 	public ApplicationUserRole setRoleName(String name) {
 		this.setName(name);
 		return this;

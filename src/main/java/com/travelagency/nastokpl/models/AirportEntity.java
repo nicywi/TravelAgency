@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class AirportEntity extends EntityMappedSuperclass {
+public final class AirportEntity extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private CityEntity city;

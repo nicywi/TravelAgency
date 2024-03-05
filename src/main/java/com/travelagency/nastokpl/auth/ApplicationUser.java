@@ -2,26 +2,27 @@ package com.travelagency.nastokpl.auth;
 
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import com.travelagency.nastokpl.models.ApplicationUserRole;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Set;
 
-@AllArgsConstructor
 public class ApplicationUser implements UserDetails {
 	private ApplicationUserEntity applicationUserEntity;
 
-	public ApplicationUser(String username,
-						   String password,
-						   Set<ApplicationUserRole> authorities,
-						   boolean accountNonExpired,
-						   boolean accountNonLocked,
-						   boolean credentialsNonExpired,
-						   boolean enabled){
+	public ApplicationUser(ApplicationUserEntity applicationUserEntity){
+		this.applicationUserEntity = applicationUserEntity;
 	}
 
+		public ApplicationUser(String username,
+						   String password,
+						   Set<ApplicationUserRole> authorities,
+						   boolean isAccountNonExpired,
+						   boolean isAccountNonLocked,
+						   boolean isCredentialsNonExpired,
+						   boolean isEnabled){
+		}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities(){
 		return applicationUserEntity.getAuthorities();

@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public abstract class EntityMappedSuperclass {
+public sealed abstract class EntityMappedSuperclass
+		permits AirportEntity, ApplicationUserRole, CityEntity, ContinentEntity, CountryEntity, HotelEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
