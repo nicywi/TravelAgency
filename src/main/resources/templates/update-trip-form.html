@@ -52,12 +52,11 @@
       </div>
     </div>
   </div>
-  <form id="updateTripForm" th:action="@{/trips/updateTrip}" method="post" th:object="${oldTrip}">
+  <form id="updateTripForm" th:action="@{/trips/updateTrip/{id} (id=${oldTrip.id})}" method="post" th:object="${oldTrip}">
     <input type="hidden" name="id" th:value="${oldTrip.id}"/>
     <div class="mb-3">
       <label for="startDate" class="form-label">Start Date:</label>
-<!--      <input type="date" class="form-control" id="startDate" th:field="*{startDate}">-->
-      <input type="date" class="form-control" id="startDate" th:field="*{startDate}" name="startDate" th:value="${oldTrip.startDate}">
+      <input type="date" class="form-control" id="startDate" th:field="*{startDate}">
     </div>
     <div class="mb-3">
       <label for="endDate" class="form-label">End Date:</label>
@@ -65,32 +64,32 @@
     </div>
     <div class="mb-3">
       <label for="durationDays" class="form-label">Duration (in days):</label>
-      <input type="number" class="form-control" id="durationDays" th:field="*{durationDays}" name="durationDays" th:value="${oldTrip.durationDays}">
+      <input type="number" class="form-control" id="durationDays" th:field="*{durationDays}">
     </div>
-<!--    <div class="mb-3">-->
-<!--      <label for="mealType" class="form-label">Meal type:</label>-->
-<!--      <input type="text" class="form-control" id="mealType" th:field="*{mealType}">-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="priceAdult" class="form-label">Price Adult:</label>-->
-<!--      <input type="number" class="form-control" id="priceAdult" th:field="*{priceAdult}">-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="priceChild" class="form-label">Price Child:</label>-->
-<!--      <input type="number" class="form-control" id="priceChild" th:field="*{priceChild}">-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="promoted" class="form-label">Promoted:</label>-->
-<!--      <input type="checkbox" class="form-control" id="promoted" th:field="*{promoted}">-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="availableAdultSeats" class="form-label">Available Adult Seats:</label>-->
-<!--      <input type="number" class="form-control" id="availableAdultSeats" th:field="*{availableAdultSeats}">-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="availableChildSeats" class="form-label">Available Child Seats:</label>-->
-<!--      <input type="number" class="form-control" id="availableChildSeats" th:field="*{availableChildSeats}">-->
-<!--    </div>-->
+    <div class="mb-3">
+      <label for="mealType" class="form-label">Meal type:</label>
+      <input type="text" class="form-control" id="mealType" th:field="*{mealType}">
+    </div>
+    <div class="mb-3">
+      <label for="priceAdult" class="form-label">Price Adult:</label>
+      <input type="number" class="form-control" id="priceAdult" th:field="*{priceAdult}">
+    </div>
+    <div class="mb-3">
+      <label for="priceChild" class="form-label">Price Child:</label>
+      <input type="number" class="form-control" id="priceChild" th:field="*{priceChild}">
+    </div>
+    <div class="mb-3">
+      <label for="promoted" class="form-label">Promoted:</label>
+      <input type="checkbox" class="form-control" id="promoted" th:field="*{promoted}">
+    </div>
+    <div class="mb-3">
+      <label for="availableAdultSeats" class="form-label">Available Adult Seats:</label>
+      <input type="number" class="form-control" id="availableAdultSeats" th:field="*{availableAdultSeats}">
+    </div>
+    <div class="mb-3">
+      <label for="availableChildSeats" class="form-label">Available Child Seats:</label>
+      <input type="number" class="form-control" id="availableChildSeats" th:field="*{availableChildSeats}">
+    </div>
 <!--    <div class="mb-3">-->
 <!--      <label for="departureCityId" class="form-label">Departure City id:</label>-->
 <!--      <input type="number" class="form-control" id="departureCityId" th:field="*{departureCityId}">-->
