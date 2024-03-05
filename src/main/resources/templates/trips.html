@@ -56,10 +56,12 @@
             <td th:text="${trip.availableAdultSeats}"></td>
             <td th:text="${trip.availableChildSeats}"></td>
             <td>
-                <form th:action="@{/trips/update}" method="get">
-                    <input type="hidden" name="id" th:value="${trip.id}"/>
-                    <button type="submit" class="btn btn-secondary btn-sm">UPDATE</button>
-                </form>
+                <a th:href="@{/trips/update/{id}(id=${trip.id})}" class="btn btn-secondary btn-sm">UPDATE</a>
+
+                <!--                <form th:action="@{/trips/update}" method="get">-->
+<!--                    <input type="hidden" name="id" th:value="${trip.id}"/>-->
+<!--                    <button type="submit" class="btn btn-secondary btn-sm">UPDATE</button>-->
+<!--                </form>-->
             </td>
             <td>
                 <form th:action="@{/trips/delete}" method="post">
