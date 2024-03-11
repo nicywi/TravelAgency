@@ -49,7 +49,7 @@ public class SearchService {
         if (durationDays != null) {
             predicates.add(criteriaBuilder.equal(root.get("durationDays"), durationDays));
         }
-        if (mealType != null) {
+        if (mealType != null && !mealType.isEmpty()) {
             predicates.add(criteriaBuilder.equal(root.get("mealType"), mealType));
         }
         if (priceChild != null) {
