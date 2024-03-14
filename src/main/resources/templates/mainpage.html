@@ -91,9 +91,13 @@
             <tr>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th>Duration Days</th>
+                <th>Departure</th>
+                <th>Dest. City</th>
+                <th>Dest. Country</th>
+                <th>Hotel Name</th>
+                <th>Hotel Stars</th>
                 <th>Meal Type</th>
-                <th>Promoted</th>
+                <th>Price Adult</th>
                 <th>Purchase</th>
             </tr>
             </thead>
@@ -101,9 +105,13 @@
             <tr th:each="trip : ${promotedTrips}">
                 <td th:text="${trip.startDate}"></td>
                 <td th:text="${trip.endDate}"></td>
-                <td th:text="${trip.durationDays}"></td>
+                <td th:text="${trip.departureCityId.name}"></td>
+                <td th:text="${trip.destinationCityId.name}"></td>
+                <td th:text="${trip.destinationCityId.country.name}"></td>
+                <td th:text="${trip.destinationCityId.hotels.get(0).name}"></td>
+                <td th:text="${trip.destinationCityId.hotels.get(0).stars}"></td>
                 <td th:text="${trip.mealType}"></td>
-                <td th:text="${trip.promoted}"></td>
+                <td th:text="${trip.priceAdult}"></td>
                 <td>
                     <form th:action="@{/purchase}" method="get">
                         <input type="hidden" name="id" th:value="${trip.id}"/>
@@ -122,11 +130,12 @@
             <tr>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th>Duration Days</th>
-                <th>Meal Type</th>
-                <th>Promoted</th>
+                <th>Departure</th>
+                <th>Dest. City</th>
+                <th>Dest. Country</th>
+                <th>Hotel Stars</th>
+                <th>Price Adult</th>
                 <th>Available Adult Seats</th>
-                <th>Available Child Seats</th>
                 <th>Purchase</th>
             </tr>
             </thead>
@@ -134,11 +143,12 @@
             <tr th:each="trip : ${upcomingTrips}">
                 <td th:text="${trip.startDate}"></td>
                 <td th:text="${trip.endDate}"></td>
-                <td th:text="${trip.durationDays}"></td>
-                <td th:text="${trip.mealType}"></td>
-                <td th:text="${trip.promoted}"></td>
+                <td th:text="${trip.departureCityId.name}"></td>
+                <td th:text="${trip.destinationCityId.name}"></td>
+                <td th:text="${trip.destinationCityId.country.name}"></td>
+                <td th:text="${trip.destinationCityId.hotels.get(0).stars}"></td>
+                <td th:text="${trip.priceAdult}"></td>
                 <td th:text="${trip.availableAdultSeats}"></td>
-                <td th:text="${trip.availableChildSeats}"></td>
                 <td>
                     <form th:action="@{/purchase}" method="get">
                         <input type="hidden" name="id" th:value="${trip.id}"/>
@@ -156,23 +166,23 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Purchase Id</th>
                 <th>Purchase Date</th>
-                <th>Trip Id</th>
-                <th>Total price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Departure City</th>
+                <th>Trip Dest. City</th>
                 <th>Adult count</th>
-                <th>Child count</th>
 
             </tr>
             </thead>
             <tbody>
             <tr th:each="purchase : ${recentlyPurchasedTrips}">
-                <td th:text="${purchase.id}"></td>
                 <td th:text="${purchase.date}"></td>
-                <td th:text="${purchase.trip.id}"></td>
-                <td th:text="${purchase.totalAmount}"></td>
+                <td th:text="${purchase.trip.startDate}"></td>
+                <td th:text="${purchase.trip.endDate}"></td>
+                <td th:text="${purchase.trip.departureCityId.name}"></td>
+                <td th:text="${purchase.trip.destinationCityId.name}"></td>
                 <td th:text="${purchase.adultCount}"></td>
-                <td th:text="${purchase.childCount}"></td>
             </tr>
             </tbody>
         </table>
