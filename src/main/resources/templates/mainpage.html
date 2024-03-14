@@ -2,18 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Travel Agency</title>
     <style>
-        body {
+        .trips-sections {
             font-family: Arial, sans-serif;
             background-color: #799f78;
-            margin: 10px;
-            padding: 10px;
+            padding: 30px;
+            margin-top: 80px;
         }
 
         h1 {
             color: #343a40;
+        }
+
+        a{
+            font-size: 24px;
+        }
+
+        body {
+            background-color: #799f78;
         }
 
         .promoted-trips {
@@ -38,88 +47,121 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        .navbar{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        }
+
     </style>
     <link rel="shortcut icon" href="#">
 </head>
 <body>
-<section class="promoted-trips">
-    <h1>Promoted Trips</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Duration Days</th>
-            <th>Meal Type</th>
-            <th>Promoted</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="trip : ${promotedTrips}">
-            <td th:text="${trip.startDate}"></td>
-            <td th:text="${trip.endDate}"></td>
-            <td th:text="${trip.durationDays}"></td>
-            <td th:text="${trip.mealType}"></td>
-            <td th:text="${trip.promoted}"></td>
-        </tr>
-        </tbody>
-    </table>
-</section>
 
-<section class="upcoming-trips">
-    <h1>Upcoming Trips</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Duration Days</th>
-            <th>Meal Type</th>
-            <th>Promoted</th>
-            <th>Available Adult Seats</th>
-            <th>Available Child Seats</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="trip : ${upcomingTrips}">
-            <td th:text="${trip.startDate}"></td>
-            <td th:text="${trip.endDate}"></td>
-            <td th:text="${trip.durationDays}"></td>
-            <td th:text="${trip.mealType}"></td>
-            <td th:text="${trip.promoted}"></td>
-            <td th:text="${trip.availableAdultSeats}"></td>
-            <td th:text="${trip.availableChildSeats}"></td>
-        </tr>
-        </tbody>
-    </table>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top" style="background-color: #415A3F;">
+    <div class="container-fluid">
+<!--        <a class="navbar-brand" href="/home">-->
+<!--            <img src="/static/images/icon.png" alt="icon" style="height: 60px ;width: auto;">-->
+<!--        </a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/purchases/admin">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="trips-sections">
+    <section class="promoted-trips">
+        <h1>Promoted Trips</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Duration Days</th>
+                <th>Meal Type</th>
+                <th>Promoted</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="trip : ${promotedTrips}">
+                <td th:text="${trip.startDate}"></td>
+                <td th:text="${trip.endDate}"></td>
+                <td th:text="${trip.durationDays}"></td>
+                <td th:text="${trip.mealType}"></td>
+                <td th:text="${trip.promoted}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 
-</section>
+    <section class="upcoming-trips">
+        <h1>Upcoming Trips</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Duration Days</th>
+                <th>Meal Type</th>
+                <th>Promoted</th>
+                <th>Available Adult Seats</th>
+                <th>Available Child Seats</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="trip : ${upcomingTrips}">
+                <td th:text="${trip.startDate}"></td>
+                <td th:text="${trip.endDate}"></td>
+                <td th:text="${trip.durationDays}"></td>
+                <td th:text="${trip.mealType}"></td>
+                <td th:text="${trip.promoted}"></td>
+                <td th:text="${trip.availableAdultSeats}"></td>
+                <td th:text="${trip.availableChildSeats}"></td>
+            </tr>
+            </tbody>
+        </table>
 
-<section class="recently-purchased-trips">
-    <h1>Recently Purchased Trips</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Purchase Id</th>
-            <th>Purchase Date</th>
-            <th>Trip Id</th>
-            <th>Total price</th>
-            <th>Adult count</th>
-            <th>Child count</th>
+    </section>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="purchase : ${recentlyPurchasedTrips}">
-            <td th:text="${purchase.id}"></td>
-            <td th:text="${purchase.date}"></td>
-            <td th:text="${purchase.trip.id}"></td>
-            <td th:text="${purchase.totalAmount}"></td>
-            <td th:text="${purchase.adultCount}"></td>
-            <td th:text="${purchase.childCount}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <section class="recently-purchased-trips">
+        <h1>Recently Purchased Trips</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Purchase Id</th>
+                <th>Purchase Date</th>
+                <th>Trip Id</th>
+                <th>Total price</th>
+                <th>Adult count</th>
+                <th>Child count</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="purchase : ${recentlyPurchasedTrips}">
+                <td th:text="${purchase.id}"></td>
+                <td th:text="${purchase.date}"></td>
+                <td th:text="${purchase.trip.id}"></td>
+                <td th:text="${purchase.totalAmount}"></td>
+                <td th:text="${purchase.adultCount}"></td>
+                <td th:text="${purchase.childCount}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 </section>
 
 </body>
