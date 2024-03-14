@@ -1,6 +1,5 @@
 package com.travelagency.nastokpl.models;
 
-import com.travelagency.nastokpl.dto.ApplicationUserEntityDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -39,35 +38,43 @@ public class ApplicationUserEntity implements UserDetails {
 	@Column(name = "is_enabled")
 	private boolean isEnabled;
 
-	@Enumerated(EnumType.STRING)
-	private Authority authorities;
+//	@Enumerated(EnumType.STRING)
+//	private ApplicationUserRole authorities;
+
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities (){
+//		return Collections.singleton(authorities);
+//	}
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_authorities",
+			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
+	private Set<ApplicationUserRole> authorities;
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities (){
-		return Collections.singleton(authorities);
+	public Collection<? extends GrantedAuthority> getAuthorities(){
+		return authorities;
 	}
 
 	@Override
-	public boolean isAccountNonExpired (){
+	public boolean isAccountNonExpired(){
 		return isAccountNonExpired;
 	}
 
 	@Override
-	public boolean isAccountNonLocked (){
+	public boolean isAccountNonLocked(){
 		return isAccountNonLocked;
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired (){
+	public boolean isCredentialsNonExpired(){
 		return isCredentialsNonExpired;
 	}
 
 	@Override
-	public boolean isEnabled (){
+	public boolean isEnabled(){
 		return isEnabled;
 	}
 
-	public ApplicationUserEntityDTO toDTO (){
-		return new ApplicationUserEntityDTO(this.getUsername(), this.getPassword(), this.authorities != null ? Authority.valueOf(this.authorities.getAuthority()) : null);
-	}
 }

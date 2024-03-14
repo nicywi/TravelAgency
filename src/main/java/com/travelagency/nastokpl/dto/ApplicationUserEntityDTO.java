@@ -1,7 +1,7 @@
 package com.travelagency.nastokpl.dto;
 
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
-import com.travelagency.nastokpl.models.Authority;
+import com.travelagency.nastokpl.models.ApplicationUserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,16 +12,16 @@ import lombok.NoArgsConstructor;
 public class ApplicationUserEntityDTO {
 	private String username;
 	private String password;
-	private Authority authority;
+	private ApplicationUserRole authority;
 
-	public ApplicationUserEntity toEntity(){
-		ApplicationUserEntity user = new ApplicationUserEntity();
-		user.setUsername(this.username);
-
-		if (this.username != null){
-			user.setAuthorities(Authority.valueOf(this.authority.name()));
-		}
-		return user;
-	}
+//	public ApplicationUserEntity toEntity(){
+//		ApplicationUserEntity user = new ApplicationUserEntity();
+//		user.setUsername(this.username);
+//
+//		if (this.username != null){
+//			user.setAuthorities(ApplicationUserRole.valueOf(this.authority.name()));
+//		}
+//		return user;
+//	}
 
 }

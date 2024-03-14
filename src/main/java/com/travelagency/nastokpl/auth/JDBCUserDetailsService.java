@@ -1,7 +1,9 @@
 package com.travelagency.nastokpl.auth;
 
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
-import com.travelagency.nastokpl.models.Authority;
+import jakarta.annotation.Nullable;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
+@NoArgsConstructor(force = true)
 public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
 
@@ -22,13 +25,19 @@ public class JDBCUserDetailsService implements UserDetailsService {
 	}
 
 	@Override
+	@Nullable
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+		assert jdbcTemplate != null;
 		List<ApplicationUserEntity> users = jdbcTemplate.query(
-				"SELECT * FROM users WHERE username = ?",
-				new Object[]{username},
+				"""
+						SELECT * FROM user_authorities AS ua
+						JOIN users AS u ON ua.user_id = u.id
+						JOIN authorities AS a ON ua.authority_id = a.id
+						WHERE usenrame = ?;
+				""",
 				new RowMapper<ApplicationUserEntity>() {
 					@Override
-					public ApplicationUserEntity mapRow(ResultSet rs, int rowNum) throws SQLException{
+					public ApplicationUserEntity mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException{
 						ApplicationUserEntity user = new ApplicationUserEntity();
 						user.setId(rs.getLong("id"));
 						user.setUsername(rs.getString("username"));
@@ -37,11 +46,13 @@ public class JDBCUserDetailsService implements UserDetailsService {
 						user.setAccountNonLocked(rs.getBoolean("is_account_non_locked"));
 						user.setCredentialsNonExpired(rs.getBoolean("is_credentials_non_expired"));
 						user.setEnabled(rs.getBoolean("is_enabled"));
-						user.setAuthorities(Authority.valueOf(rs.getString("authorities")));
+//						user.setAuthorities(Collections
+//								.singleton((ApplicationUserRole) rs.getArray("name")));
 						return user;
 					}
-				});
-		if (users.isEmpty()){
+				},
+				new Object[]{username});
+				if (users.isEmpty()){
 			throw new UsernameNotFoundException("User not found");
 		}
 		return new ApplicationUser(users.get(0));
