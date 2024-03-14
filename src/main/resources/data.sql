@@ -16,7 +16,7 @@ INSERT INTO countries (name, continent_id) VALUES ('Germany', 1);
 -- City Tables
 -- City Table for Poland
 INSERT INTO cities (name, country_id) VALUES
-                                        ('Warsaw', 1), ('Karkow', 1), ('Wroclaw', 1), ('Zakopane', 1), ('Poznan', 1),
+                                        ('Warsaw', 1), ('Krakow', 1), ('Wroclaw', 1), ('Zakopane', 1), ('Poznan', 1),
                                         ('Gdansk', 1), ('Torun', 1), ('Szczecin', 1), ('Gdynia', 1), ('Katowice', 1);
 
 -- City Table for Italy
