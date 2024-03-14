@@ -96,7 +96,7 @@
                     <a class="nav-link active" aria-current="page" href="/search">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/purchases/admin">Admin</a>
+                    <a class="nav-link" href="/admin">Admin</a>
                 </li>
             </ul>
         </div>
@@ -172,6 +172,7 @@
                     <th>Promoted</th>
                     <th>Available Adult Seats</th>
                     <th>Available Child Seats</th>
+                    <th>Purchase</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -184,6 +185,12 @@
                     <td th:text="${trip.promoted}"></td>
                     <td th:text="${trip.availableAdultSeats}"></td>
                     <td th:text="${trip.availableChildSeats}"></td>
+                    <td>
+                        <form th:action="@{/purchase}" method="get">
+                            <input type="hidden" name="id" th:value="${trip.id}"/>
+                            <button type="submit" class="btn btn-dark btn-sm">Purchase</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
