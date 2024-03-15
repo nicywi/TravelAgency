@@ -79,21 +79,47 @@
   </div>
 </nav>
 <section class="all-sections">
-<div class="container">
-  <h2 class="mb-4">Trip Details</h2>
-  <div class="row">
-    <div class="col">
-      <p><strong>Trip ID:</strong> <span th:text="${trip.id}"></span></p>
-      <p><strong>Start Date:</strong> <span th:text="${trip.startDate}"></span></p>
-      <p><strong>End Date:</strong> <span th:text="${trip.endDate}"></span></p>
-      <p><strong>Duration (days):</strong> <span th:text="${trip.durationDays}"></span></p>
-      <p><strong>Meal Type:</strong> <span th:text="${trip.mealType}"></span></p>
-      <p><strong>Promoted:</strong> <span th:text="${trip.promoted}"></span></p>
-      <p><strong>Adult Price:</strong> <span th:text="${trip.priceAdult}"></span></p>
-      <p><strong>Child Price:</strong> <span th:text="${trip.priceChild}"></span></p>
+  <div class="container mt-4">
+    <h2 class="mb-3">Trip Details</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Trip Information</h5>
+            <p class="card-text"><strong>Trip ID:</strong> <span th:text="${trip.id}"></span></p>
+            <p class="card-text"><strong>Start Date:</strong> <span th:text="${trip.startDate}"></span></p>
+            <p class="card-text"><strong>End Date:</strong> <span th:text="${trip.endDate}"></span></p>
+            <p class="card-text"><strong>Duration (days):</strong> <span th:text="${trip.durationDays}"></span></p>
+            <p class="card-text"><strong>Departure City:</strong> <span th:text="${trip.departureCityId.name}"></span></p>
+            <p class="card-text"><strong>Destination City:</strong> <span th:text="${trip.destinationCityId.name}"></span></p>
+            <p class="card-text"><strong>Destination Country:</strong> <span th:text="${trip.destinationCityId.country.name}"></span></p>
+            <p class="card-text"><strong>Available Adult Seats:</strong> <span th:text="${trip.availableAdultSeats}"></span></p>
+            <p class="card-text"><strong>Available Child Seats:</strong> <span th:text="${trip.availableChildSeats}"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Accommodation Details</h5>
+            <p class="card-text"><strong>Hotel Name:</strong> <span th:text="${trip.destinationCityId.hotels.get(0).name}"></span></p>
+            <p class="card-text"><strong>Hotel Stars:</strong> <span th:text="${trip.destinationCityId.hotels.get(0).stars}"></span></p>
+            <p class="card-text"><strong>Hotel Description:</strong> <span th:text="${trip.destinationCityId.hotels.get(0).description}"></span></p>
+            <p class="card-text"><strong>Meal Type:</strong> <span th:text="${trip.mealType}"></span></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Price Details</h5>
+            <p class="card-text"><strong>Promoted:</strong> <span th:text="${trip.promoted}"></span></p>
+            <p class="card-text"><strong>Adult Price:</strong> <span th:text="${trip.priceAdult}"></span></p>
+            <p class="card-text"><strong>Child Price:</strong> <span th:text="${trip.priceChild}"></span></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
 
 <div class="container mt-4">
   <h2>Purchase Form</h2>

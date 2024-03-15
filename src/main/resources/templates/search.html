@@ -164,10 +164,12 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Trip id</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Duration Days</th>
+                    <th>Departure City</th>
+                    <th>Destination City</th>
+                    <th>Destination Country</th>
                     <th>Meal Type</th>
                     <th>Promoted</th>
                     <th>Available Adult Seats</th>
@@ -177,10 +179,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="trip : ${searchResults}">
-                    <td th:text="${trip.id}"></td>
                     <td th:text="${trip.startDate}"></td>
                     <td th:text="${trip.endDate}"></td>
                     <td th:text="${trip.durationDays}"></td>
+                    <td th:text="${trip.departureCityId.name}"></td>
+                    <td th:text="${trip.destinationCityId.name}"></td>
+                    <td th:text="${trip.destinationCityId.country.name}"></td>
                     <td th:text="${trip.mealType}"></td>
                     <td th:text="${trip.promoted}"></td>
                     <td th:text="${trip.availableAdultSeats}"></td>

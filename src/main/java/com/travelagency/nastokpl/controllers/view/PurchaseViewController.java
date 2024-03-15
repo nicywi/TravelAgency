@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -57,7 +58,9 @@ public class PurchaseViewController {
     @GetMapping("/admin")
     public String showAdminPurchases(Model model) {
         List<PurchaseEntity> purchasedTrips = purchaseService.getAllPurchasedTrips();
+        BigDecimal totalSum = purchaseService.getTotalSumOfPurchases();
         model.addAttribute("purchasedTrips", purchasedTrips);
+        model.addAttribute("totalSum", totalSum);
         return "admin-purchases";
     }
 

@@ -4,6 +4,7 @@ import com.travelagency.nastokpl.models.ContinentEntity;
 import com.travelagency.nastokpl.models.CountryEntity;
 import com.travelagency.nastokpl.models.PurchaseEntity;
 import com.travelagency.nastokpl.models.TripEntity;
+import com.travelagency.nastokpl.repositories.CountryRepository;
 import com.travelagency.nastokpl.repositories.PurchaseRepository;
 import com.travelagency.nastokpl.repositories.TripRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +26,9 @@ public class MainPageService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
+
+    @Autowired
+    private CountryRepository countryRepository;
 
     public List<TripEntity> getPromotedTrips() {
         return tripRepository.findTripsByPromotedIsTrue();
@@ -72,4 +77,5 @@ public class MainPageService {
 
         return purchaseRepository.findPurchaseByDateAfter(startDate);
     }
+
 }

@@ -58,4 +58,13 @@ public class PurchaseService {
         LocalDate pastDate = currentDate.minusDays(30);
         return purchaseRepository.findPurchaseByDateBetween(pastDate, currentDate);
     }
+
+    public BigDecimal getTotalSumOfPurchases() {
+        List<PurchaseEntity> purchases = purchaseRepository.findAll();
+        BigDecimal totalSum = BigDecimal.ZERO;
+        for (PurchaseEntity purchase : purchases) {
+            totalSum = totalSum.add(purchase.getTotalAmount());
+        }
+        return totalSum;
+    }
 }
