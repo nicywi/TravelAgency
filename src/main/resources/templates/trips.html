@@ -25,20 +25,80 @@
         .button-add {
             margin: 10px 0 10px;
         }
+        table {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .navbar {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        a {
+            font-size: 24px;
+        }
+
+        .all-sections {
+            font-family: Arial, sans-serif;
+            background-color: #799f78;
+            padding: 30px;
+            margin-top: 80px;
+        }
     </style>
     <link rel="shortcut icon" href="#">
 </head>
 <body>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top" style="background-color: #415A3F;">
+    <div class="container-fluid">
+        <!--        <a class="navbar-brand" href="/home">-->
+        <!--            <img src="/static/images/icon.png" alt="icon" style="height: 60px ;width: auto;">-->
+        <!--        </a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/purchase/admin">Purchases</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/trips">Trips</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="all-sections">
 <section class="all-trips">
     <h1>All Trips</h1>
     <button type="button" class="btn btn-primary button-add" onclick="window.location.href='/trips/tripForm'">ADD NEW TRIP</button>
-    <table class="table table-striped">
+    <table class="table table-striped table-hover table-dark table-borderless">
         <thead>
         <tr>
+            <th>Trip id</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Duration Days</th>
-            <th>Meal Type</th>
+            <th>Departure City</th>
+            <th>Destination City</th>
+            <th>Destination Country</th>
             <th>Promoted</th>
             <th>Available Adult Seats</th>
             <th>Available Child Seats</th>
@@ -48,10 +108,13 @@
         </thead>
         <tbody>
         <tr th:each="trip : ${allTrips}">
+            <td th:text="${trip.id}"></td>
             <td th:text="${trip.startDate}"></td>
             <td th:text="${trip.endDate}"></td>
             <td th:text="${trip.durationDays}"></td>
-            <td th:text="${trip.mealType}"></td>
+            <td th:text="${trip.departureCityId.name}"></td>
+            <td th:text="${trip.destinationCityId.name}"></td>
+            <td th:text="${trip.destinationCityId.country.name}"></td>
             <td th:text="${trip.promoted}"></td>
             <td th:text="${trip.availableAdultSeats}"></td>
             <td th:text="${trip.availableChildSeats}"></td>
@@ -73,6 +136,6 @@
         </tbody>
     </table>
 </section>
-
+</section>
 </body>
 </html>

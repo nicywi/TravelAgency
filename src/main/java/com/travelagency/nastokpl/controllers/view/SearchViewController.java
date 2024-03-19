@@ -21,12 +21,12 @@ public class SearchViewController {
 
     private final SearchService searchService;
 
-    @GetMapping("/showForm")
+    @GetMapping
     public String searchTrips(){
         return "search";
     }
 
-    @PostMapping("/showResults")
+    @PostMapping
     public String displaySearchResults(@RequestParam(required = false) Integer availableAdultSeats,
                                        @RequestParam(required = false) BigDecimal priceAdult,
                                        @RequestParam(required = false) LocalDate startDate,

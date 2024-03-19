@@ -18,16 +18,6 @@
             padding: 10px;
         }
 
-        h1 {
-            color: #fcfdfd;
-            /*margin-top: 10px;*/
-            /*margin-bottom: 40px;*/
-            padding: 30px;
-            background: #415A3F;
-            margin: 0;
-
-        }
-
         h3 {
             color: #343a40;
 
@@ -58,7 +48,8 @@
             background-color: #1c1c1f;
             border-radius: 0.25rem;
         }
-        .custom-date{
+
+        .custom-date {
             margin-left: 5px;
         }
 
@@ -67,94 +58,147 @@
             width: auto;
         }
 
+        .navbar {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        a {
+            font-size: 24px;
+        }
+
+        .all-sections {
+            font-family: Arial, sans-serif;
+            background-color: #799f78;
+            padding: 30px;
+            margin-top: 80px;
+        }
+
     </style>
     <link rel="shortcut icon" href="#">
 </head>
 <body>
-<h1>Search for your dream vacation!</h1>
-<section class="all">
-    <form th:action="@{/search/showResults}" method="post" role="search">
-        <div class="row">
-            <div class="col-md-4 form-group">
-                <div class="custom-date">
-                    <label for="startDate">Start Date:</label>
-                    <input class="custom-date form-control" type="date" id="startDate" name="startDate">
-                </div>
-            </div>
-            <div class="col-md-4 form-group">
-                <div class="custom-date">
-                    <label for="endDate">End Date:</label>
-                    <input class="custom-date form-control" type="date" id="endDate" name="endDate">
-                </div>
-            </div>
-            <div class="col-md-4 form-group">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="promotedCheckbox" name="promoted"
-                           value="true">
-                    <label class="custom-control-label" for="promotedCheckbox">Promoted</label>
-                </div>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="text" name="departureCityId" placeholder="Departure City Id"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="text" name="destinationCityId" placeholder="Destination City Id"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="text" name="mealType" placeholder="Meal Type"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="number" name="durationDays" placeholder="Duration in Days"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="number" name="priceAdult" placeholder="Price for Adult"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="number" name="priceChild" placeholder="Price for Child"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="number" name="availableAdultSeats"
-                       placeholder="Available Adult Seats"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <input class="form-control" type="number" name="availableChildSeats"
-                       placeholder="Available Child Seats"/>
-            </div>
-            <div class="col-md-4 form-group">
-                <button class="btn btn-dark" type="submit">Search</button>
-            </div>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top" style="background-color: #415A3F;">
+    <div class="container-fluid">
+        <!--        <a class="navbar-brand" href="/home">-->
+        <!--            <img src="/static/images/icon.png" alt="icon" style="height: 60px ;width: auto;">-->
+        <!--        </a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/search">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+            </ul>
         </div>
-        <!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
-    </form>
+    </div>
+</nav>
+<section class="all-sections">
+<!--    <h1>Search for your dream vacation!</h1>-->
+    <section class="all">
+        <form th:action="@{/search}" method="post" role="search">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <div class="custom-date">
+                        <label for="startDate">Start Date:</label>
+                        <input class="custom-date form-control" type="date" id="startDate" name="startDate">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <div class="custom-date">
+                        <label for="endDate">End Date:</label>
+                        <input class="custom-date form-control" type="date" id="endDate" name="endDate">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="promotedCheckbox" name="promoted"
+                               value="true">
+                        <label class="custom-control-label" for="promotedCheckbox">Promoted</label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="text" name="departureCityId" placeholder="Departure City Id"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="text" name="destinationCityId" placeholder="Destination City Id"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="text" name="mealType" placeholder="Meal Type"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="number" name="durationDays" placeholder="Duration in Days"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="number" name="priceAdult" placeholder="Price for Adult"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="number" name="priceChild" placeholder="Price for Child"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="number" name="availableAdultSeats"
+                           placeholder="Available Adult Seats"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input class="form-control" type="number" name="availableChildSeats"
+                           placeholder="Available Child Seats"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <button class="btn btn-dark" type="submit">Search</button>
+                </div>
+            </div>
+            <!--    <button class="btn btn-outline-success" type="submit">Search</button>-->
+        </form>
 
-    <section class="trip-results">
-        <h3>Search Results</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Trip id</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Duration Days</th>
-                <th>Meal Type</th>
-                <th>Promoted</th>
-                <th>Available Adult Seats</th>
-                <th>Available Child Seats</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="trip : ${searchResults}">
-                <td th:text="${trip.id}"></td>
-                <td th:text="${trip.startDate}"></td>
-                <td th:text="${trip.endDate}"></td>
-                <td th:text="${trip.durationDays}"></td>
-                <td th:text="${trip.mealType}"></td>
-                <td th:text="${trip.promoted}"></td>
-                <td th:text="${trip.availableAdultSeats}"></td>
-                <td th:text="${trip.availableChildSeats}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <section class="trip-results">
+            <h3>Search Results</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Duration Days</th>
+                    <th>Departure City</th>
+                    <th>Destination City</th>
+                    <th>Destination Country</th>
+                    <th>Meal Type</th>
+                    <th>Promoted</th>
+                    <th>Available Adult Seats</th>
+                    <th>Available Child Seats</th>
+                    <th>Purchase</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="trip : ${searchResults}">
+                    <td th:text="${trip.startDate}"></td>
+                    <td th:text="${trip.endDate}"></td>
+                    <td th:text="${trip.durationDays}"></td>
+                    <td th:text="${trip.departureCityId.name}"></td>
+                    <td th:text="${trip.destinationCityId.name}"></td>
+                    <td th:text="${trip.destinationCityId.country.name}"></td>
+                    <td th:text="${trip.mealType}"></td>
+                    <td th:text="${trip.promoted}"></td>
+                    <td th:text="${trip.availableAdultSeats}"></td>
+                    <td th:text="${trip.availableChildSeats}"></td>
+                    <td>
+                        <form th:action="@{/purchase}" method="get">
+                            <input type="hidden" name="id" th:value="${trip.id}"/>
+                            <button type="submit" class="btn btn-dark btn-sm">Purchase</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
     </section>
 </section>
 </body>

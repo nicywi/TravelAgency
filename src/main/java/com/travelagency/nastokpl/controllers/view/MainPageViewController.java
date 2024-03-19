@@ -38,7 +38,7 @@ public class MainPageViewController {
         model.addAttribute("promotedTrips", promotedTrips);
         model.addAttribute("upcomingTrips", upcomingTrips);
         model.addAttribute("recentlyPurchasedTrips", recentlyPurchasedTrips);
-//
+
         return "mainpage";
     }
 
