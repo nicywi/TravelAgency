@@ -123,15 +123,18 @@
 
 <div class="container mt-4">
   <h2>Purchase Form</h2>
+<!--  <div id="errorMessage" class="text-danger mb-3" style="display: none;">Please enter a valid number of guests.</div>-->
   <form id="purchaseForm" th:action="@{/purchase}" method="post" th:object="${newPurchase}">
     <input type="hidden" th:field="*{trip.id}" th:value="${newPurchase.trip.id}" />
     <div class="mb-3">
       <label for="adultCount" class="form-label">Number of Adults:</label>
-      <input type="number" class="form-control" id="adultCount" th:field="*{adultCount}" required>
+      <input type="number" class="form-control" id="adultCount" th:field="*{adultCount}" min="0" required>
+      <div th:if="${#fields.hasErrors('adultCount')}" class="text-danger" th:errors="*{adultCount}"></div>
     </div>
     <div class="mb-3">
       <label for="childCount" class="form-label">Number of Children:</label>
-      <input type="number" class="form-control" id="childCount" th:field="*{childCount}" required>
+      <input type="number" class="form-control" id="childCount" th:field="*{childCount}" min="0" required>
+      <div th:if="${#fields.hasErrors('adultCount')}" class="text-danger" th:errors="*{childCount}"></div>
     </div>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchaseModal">Confirm Purchase</button>
   </form>
@@ -158,12 +161,25 @@
   </div>
 </div>
 
-<script>
-  // JavaScript to submit the form when the "Proceed" button is clicked
-  document.getElementById("proceedButton").addEventListener("click", function() {
-    document.getElementById("purchaseForm").submit();
-  });
-</script>
+<!--<script>-->
+<!--  // JavaScript to submit the form when the "Proceed" button is clicked-->
+<!--  document.getElementById("proceedButton").addEventListener("click", function() {-->
+<!--    document.getElementById("purchaseForm").submit();-->
+<!--  });-->
+<!--</script>-->
+<!--  <script>-->
+<!--    // JavaScript to validate the form before submitting-->
+<!--    document.getElementById("confirmButton").addEventListener("click", function() {-->
+<!--      var adultCount = parseInt(document.getElementById("adultCount").value);-->
+<!--      var childCount = parseInt(document.getElementById("childCount").value);-->
+<!--      if (adultCount === 0 && childCount === 0) {-->
+<!--        document.getElementById("errorMessage").style.display = "block";-->
+<!--      } else {-->
+<!--        document.getElementById("errorMessage").style.display = "none";-->
+<!--        document.getElementById("purchaseForm").submit();-->
+<!--      }-->
+<!--    });-->
+<!--  </script>-->
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
