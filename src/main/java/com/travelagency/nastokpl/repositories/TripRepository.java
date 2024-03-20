@@ -21,7 +21,7 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>{
 
     List<TripEntity> findTripsByStartDateBetween(LocalDate currentDate, LocalDate futureDate);
 
-    @Query("SELECT t FROM TripEntity t WHERE t.promoted = true AND t.destinationCityId.country = :country")
-    List<TripEntity> findPromotedTripsByCountry(CountryEntity country);
-    // code
+//    @Query("SELECT t FROM TripEntity t WHERE t.promoted = true AND t.destinationCityId.country = :country")
+//    List<TripEntity> findPromotedTripsByCountry(CountryEntity country);
+//
 }
