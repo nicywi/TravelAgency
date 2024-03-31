@@ -100,6 +100,10 @@
 <!--                <button type="submit" class="btn btn-primary">Sort</button>-->
 <!--            </form>-->
 <!--        </div>-->
+        <div th:if="${promotedTrips.isEmpty()}">
+            <p>No promoted trips available at the moment.</p>
+        </div>
+        <div th:unless="${promotedTrips.isEmpty()}">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -135,10 +139,15 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </section>
 
     <section class="upcoming-trips">
         <h1>Upcoming Trips</h1>
+        <div th:if="${upcomingTrips.isEmpty()}">
+            <p>No upcoming trips available at the moment.</p>
+        </div>
+        <div th:unless="${upcomingTrips.isEmpty()}">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -172,11 +181,15 @@
             </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
     <section class="recently-purchased-trips">
         <h1>Recently Purchased Trips</h1>
+        <div th:if="${recentlyPurchasedTrips.isEmpty()}">
+            <p>No recently purchased trips available at the moment.</p>
+        </div>
+        <div th:unless="${recentlyPurchasedTrips.isEmpty()}">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -200,6 +213,7 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </section>
 </section>
 
