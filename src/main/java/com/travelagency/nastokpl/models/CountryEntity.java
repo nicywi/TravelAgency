@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class CountryEntity extends EntityMappedSuperclass {
+public final class CountryEntity extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "continent_id")
 	private ContinentEntity continent;

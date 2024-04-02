@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class CityEntity extends EntityMappedSuperclass {
+public final class CityEntity extends EntityMappedSuperclass {
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private CountryEntity country;

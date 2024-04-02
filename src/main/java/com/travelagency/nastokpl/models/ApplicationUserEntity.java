@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationUserEntity implements UserDetails {
+public final class ApplicationUserEntity implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
