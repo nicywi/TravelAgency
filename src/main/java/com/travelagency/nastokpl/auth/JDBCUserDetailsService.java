@@ -24,10 +24,11 @@ import java.util.Set;
 @NoArgsConstructor(force = true)
 public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
-	private ApplicationUserDAO applicationUserDAO;
+	private final ApplicationUserDAO applicationUserDAO;
 
-	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate){
+	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate, ApplicationUserDAO applicationUserDAO){
 		this.jdbcTemplate = jdbcTemplate;
+		this.applicationUserDAO = applicationUserDAO;
 	}
 
 	@Override
@@ -76,6 +77,6 @@ public class JDBCUserDetailsService implements UserDetailsService {
 		if (users.isEmpty()){
 			throw new UsernameNotFoundException("User not found");
 		}
-		return new ApplicationUser(users.get(0));
+		return new ApplicationUserEntity();
 	}
 }

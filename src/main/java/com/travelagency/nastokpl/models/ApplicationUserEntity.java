@@ -52,6 +52,9 @@ public final class ApplicationUserEntity implements UserDetails {
 			inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
 	private Set<ApplicationUserRole> authorities;
 
+	public <R> ApplicationUserEntity(String username, String password, R collect, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled){
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities(){
 		return authorities;
