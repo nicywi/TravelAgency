@@ -4,6 +4,7 @@ import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import jakarta.annotation.Nullable;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,7 @@ public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
 	private final ApplicationUserDAO applicationUserDAO;
 
+	@Autowired
 	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate, ApplicationUserDAO applicationUserDAO){
 		this.jdbcTemplate = jdbcTemplate;
 		this.applicationUserDAO = applicationUserDAO;

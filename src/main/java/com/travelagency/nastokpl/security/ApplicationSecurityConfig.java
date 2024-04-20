@@ -23,10 +23,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity(proxyTargetClass = true, securedEnabled = true)
 public class ApplicationSecurityConfig {
-//	private static final String SIGN_IN_PAGE = "/sign-in";
-//	private static final String SIGN_IN_API = "/api/sign-in";
-//	private static final String SIGN_OUT_API = "/api/sign-out";
-//	private static final String REGISTER_PAGE = "/register/**";
 
 	@Autowired
 //	private DataSource dataSource;
