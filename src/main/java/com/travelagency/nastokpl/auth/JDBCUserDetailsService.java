@@ -4,6 +4,7 @@ import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import jakarta.annotation.Nullable;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,10 +25,12 @@ import java.util.Set;
 @NoArgsConstructor(force = true)
 public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
-	private ApplicationUserDAO applicationUserDAO;
+	private final ApplicationUserDAO applicationUserDAO;
 
-	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate){
+	@Autowired
+	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate, ApplicationUserDAO applicationUserDAO){
 		this.jdbcTemplate = jdbcTemplate;
+		this.applicationUserDAO = applicationUserDAO;
 	}
 
 	@Override
@@ -76,6 +79,6 @@ public class JDBCUserDetailsService implements UserDetailsService {
 		if (users.isEmpty()){
 			throw new UsernameNotFoundException("User not found");
 		}
-		return new ApplicationUser(users.get(0));
+		return new ApplicationUserEntity();
 	}
 }

@@ -5,6 +5,7 @@ import com.travelagency.nastokpl.models.TripEntity;
 import com.travelagency.nastokpl.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,5 @@
 package com.travelagency.nastokpl.repositories.impl;
 
-import com.travelagency.nastokpl.auth.ApplicationUser;
 import com.travelagency.nastokpl.auth.ApplicationUserDAO;
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
 import com.travelagency.nastokpl.models.ApplicationUserRole;
@@ -20,7 +19,7 @@ public class SQLApplicationUserDAO implements ApplicationUserDAO {
 	}
 
 	@Override
-	public Optional<ApplicationUser> selectApplicationUserByUsername(String username){
+	public Optional<ApplicationUserEntity> selectApplicationUserByUsername(String username){
 		return getApplicationUser().stream()
 				.filter(applicationUser -> applicationUser.getUsername().equals(username))
 				.findFirst();
@@ -28,14 +27,14 @@ public class SQLApplicationUserDAO implements ApplicationUserDAO {
 
 	// Pobieranie użytkowników, którzy są w bazie danych na starcie - Trzeba linia 33 returna oblec tak , że cały stream potrzebuje mapowania Application User na applicationIUSerEntity za find first this.mapModel.to Entity
 
-	private List<ApplicationUser> getApplicationUser(){
+	private List<ApplicationUserEntity> getApplicationUser(){
 		return applicationUserRepository.findAll().stream()
 				.map(this::mapEntityToModel)
 				.collect(Collectors.toList());
 	}
 
-	private ApplicationUser mapEntityToModel(ApplicationUserEntity entity){
-		return new ApplicationUser(
+	private ApplicationUserEntity mapEntityToModel(ApplicationUserEntity entity){
+		return new ApplicationUserEntity(
 				entity.getUsername(),
 				entity.getPassword(),
 				entity.getAuthorities().stream()
