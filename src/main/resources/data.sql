@@ -208,8 +208,8 @@ VALUES
 
 INSERT INTO users (id, username, password, is_account_mon_expired, is_account_non_locked, is_credentials_non_expired, is_enabled)
 VALUES
-    (1, 'test', '{bcrypt}$2a$10$PZomtrVYYPi4dB0vm5HYDOHib.O/WLXHmY41f4iHKKPCVdEDLJUvW', true, true, true, true),
-    (2, 'testuser', 'pass', true, true, true, true);
+    (1, 'test', '$2a$10$LKBK/8AonSpV9.yqNlcIJuAShOrGJTfxlo/0Y3QH9SRGc4mmUnznu', true, true, true, true),
+    (2, 'testuser', '$2a$10$LKBK/8AonSpV9.yqNlcIJuAShOrGJTfxlo/0Y3QH9SRGc4mmUnznu', true, true, true, true);
 
 INSERT INTO user_authorities (user_id, authority_id)
 VALUES
