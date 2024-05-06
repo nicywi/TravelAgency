@@ -1,12 +1,12 @@
 package com.travelagency.nastokpl.auth;
-
+/*
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ApplicationUserService implements UserDetailsService {
+//@Service
+public class ApplicationUserService{
 	private ApplicationUserDAO applicationUserDAO;
 
 	public ApplicationUserService(ApplicationUserDAO applicationUserDAO){
@@ -23,3 +23,4 @@ public class ApplicationUserService implements UserDetailsService {
 				.orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", username)));
 	}
 }
+*/

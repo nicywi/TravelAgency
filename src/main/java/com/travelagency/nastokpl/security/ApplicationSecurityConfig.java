@@ -1,6 +1,7 @@
 package com.travelagency.nastokpl.security;
 
 import com.travelagency.nastokpl.auth.JDBCUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,25 +21,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(proxyTargetClass = true, securedEnabled = true)
 public class ApplicationSecurityConfig {
+//	@Autowired
+//	private UserDetailsService userDetailsService;
 
-	@Autowired
 //	private DataSource dataSource;
+	@Autowired
 	private JDBCUserDetailsService jdbcUserDetailsService;
 
-//	@Autowired
-//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		auth
-//				.userDetailsService(jdbcUserDetailsService)
-//				.passwordEncoder(passwordEncoder());
-//	}
+//	@Bean
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+				.userDetailsService(jdbcUserDetailsService)
+				.passwordEncoder(passwordEncoder());
+	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder(){
-		return new BCryptPasswordEncoder(10);
+		return new BCryptPasswordEncoder();
 	}
 
 
