@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,10 +26,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ApplicationSecurityConfig {
 
 	@Autowired
-//	private DataSource dataSource;
 	private JDBCUserDetailsService jdbcUserDetailsService;
 
-//	@Autowired
+////	@Bean
 //	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //		auth
 //				.userDetailsService(jdbcUserDetailsService)
@@ -37,7 +37,7 @@ public class ApplicationSecurityConfig {
 
 	@Bean
 	public PasswordEncoder passwordEncoder(){
-		return new BCryptPasswordEncoder(10);
+		return new BCryptPasswordEncoder();
 	}
 
 

@@ -1,9 +1,12 @@
 package com.travelagency.nastokpl.auth;
 
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface ApplicationUserDAO {
-	Optional<ApplicationUserEntity> selectApplicationUserByUsername(String username);
+@Repository
+public interface ApplicationUserDAO extends JpaRepository<ApplicationUserEntity, Long> {
+	Optional<ApplicationUserEntity> getByUsername(String username);
 }

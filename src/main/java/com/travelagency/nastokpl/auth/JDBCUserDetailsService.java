@@ -1,14 +1,16 @@
 package com.travelagency.nastokpl.auth;
 
 import com.travelagency.nastokpl.models.ApplicationUserEntity;
+import com.travelagency.nastokpl.models.ApplicationUserRole;
 import jakarta.annotation.Nullable;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,17 +22,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @NoArgsConstructor(force = true)
 public class JDBCUserDetailsService implements UserDetailsService {
 	private final JdbcTemplate jdbcTemplate;
 	private final ApplicationUserDAO applicationUserDAO;
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired
-	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate, ApplicationUserDAO applicationUserDAO){
+	public JDBCUserDetailsService(JdbcTemplate jdbcTemplate, ApplicationUserDAO applicationUserDAO,
+								  NamedParameterJdbcTemplate namedParameterJdbcTemplate){
 		this.jdbcTemplate = jdbcTemplate;
 		this.applicationUserDAO = applicationUserDAO;
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
 	@Override
@@ -59,26 +65,24 @@ public class JDBCUserDetailsService implements UserDetailsService {
 				},
 				new Object[]{username});
 
-		Set<GrantedAuthority> authorities = new HashSet<>();
-		jdbcTemplate.query(
-				"""
-						SELECT * FROM user_authorities AS uA
-						JOIN authorities AS a ON uA.authority_id = a.id
-						WHERE a.name = ?;
-						""",
-				new RowMapper<Set<GrantedAuthority>>() {
-					@Override
-					public Set<GrantedAuthority> mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException{
-						authorities.add(new SimpleGrantedAuthority(rs.getString("name")));
-						return authorities;
-					}
-				},
-				new Object[]{authorities}
-		);
+		Set<ApplicationUserRole> authorities = getAuthorities(users.stream().map(ApplicationUserEntity::getId).collect(Collectors.toSet()));
+		users.forEach(u -> u.setAuthorities(authorities));
 
 		if (users.isEmpty()){
 			throw new UsernameNotFoundException("User not found");
 		}
-		return new ApplicationUserEntity();
+		return users.iterator().next();
+	}
+
+	private Set<ApplicationUserRole> getAuthorities(Set<Long> userIds) {
+		Objects.requireNonNull(namedParameterJdbcTemplate);
+		SqlParameterSource parameters = new MapSqlParameterSource("userIds", userIds);
+        List<ApplicationUserRole> authorities = namedParameterJdbcTemplate.query(
+				"SELECT name FROM authorities a JOIN user_authorities ua ON ua.authority_id = a.id AND ua.user_id IN (:userIds);",
+				parameters,
+				(rs, rowNum) -> new ApplicationUserRole().setRoleName(rs.getString("name"))
+
+		);
+		return new HashSet<>(authorities);
 	}
 }
