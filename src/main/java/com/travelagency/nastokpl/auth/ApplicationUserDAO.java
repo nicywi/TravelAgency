@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ApplicationUserDAO extends JpaRepository<ApplicationUserEntity, Long> {
-	Optional<ApplicationUserEntity> getByUsername(String username);
+    Optional<ApplicationUserEntity> getByUsername(String username);
 }

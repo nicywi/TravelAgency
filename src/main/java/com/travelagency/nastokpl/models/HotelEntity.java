@@ -18,20 +18,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class HotelEntity extends EntityMappedSuperclass {
-	@Column
-	private Integer stars;
+    @Column
+    private Integer stars;
 
-	@Column(length = 1000)
-	private String description;
+    @Column(length = 1000)
+    private String description;
 
-	@ManyToOne
-	@JoinColumn(name = "city_id")
-	private CityEntity city;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private CityEntity city;
 
 
-	public HotelDTO toDTO(){
-		CityDTO cityDTO = this.city != null ? this.city.toDTO() : null;
-		return new HotelDTO(this.getId(), this.stars, this.description, cityDTO);
-	}
-	// code
+    public HotelDTO toDTO() {
+        CityDTO cityDTO = this.city != null ? this.city.toDTO() : null;
+        return new HotelDTO(this.getId(), this.stars, this.description, cityDTO);
+    }
 }

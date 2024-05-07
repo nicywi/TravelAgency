@@ -10,13 +10,13 @@ import org.springframework.security.core.GrantedAuthority;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public final class ApplicationUserRole extends EntityMappedSuperclass implements GrantedAuthority {
-	public ApplicationUserRole setRoleName(String name) {
-		this.setName(name);
-		return this;
-	}
+    public ApplicationUserRole setRoleName(String name) {
+        this.setName(name);
+        return this;
+    }
 
-	@Override
-	public String getAuthority(){
-		return this.getName();
-	}
+    @Override
+    public String getAuthority() {
+        return this.getName();
+    }
 }

@@ -14,25 +14,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class ParticipantEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
 
-	@Column(name = "first_name")
-	private String firstName;
+    @Column(name = "first_name")
+    private String firstName;
 
-	@Column(name = "last_name")
-	private String lastName;
+    @Column(name = "last_name")
+    private String lastName;
 
-	@Column
-	private Integer age;
+    @Column
+    private Integer age;
 
-	@Column(name = "is_adult")
-	private Boolean isAdult;
+    @Column(name = "is_adult")
+    private Boolean isAdult;
 
-	@ManyToOne
-	@JoinColumn(name = "purchase_id")
-	private PurchaseEntity purchase;
-	// code
+    @ManyToOne
+    @JoinColumn(name = "purchase_id")
+    private PurchaseEntity purchase;
 }

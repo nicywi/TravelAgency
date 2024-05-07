@@ -16,66 +16,56 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class ApplicationUserEntity implements UserDetails {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column
-	private String username;
+    @Column
+    private String username;
 
-	@Column
-	private String password;
+    @Column
+    private String password;
 
-	@Column(name = "is_account_mon_expired")
-	private boolean isAccountNonExpired;
+    @Column(name = "is_account_mon_expired")
+    private boolean isAccountNonExpired;
 
-	@Column(name = "is_account_non_locked")
-	private boolean isAccountNonLocked;
+    @Column(name = "is_account_non_locked")
+    private boolean isAccountNonLocked;
 
-	@Column(name = "is_credentials_non_expired")
-	private boolean isCredentialsNonExpired;
+    @Column(name = "is_credentials_non_expired")
+    private boolean isCredentialsNonExpired;
 
-	@Column(name = "is_enabled")
-	private boolean isEnabled;
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
 
-//	@Enumerated(EnumType.STRING)
-//	private ApplicationUserRole authorities;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_authorities",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
+    private Set<ApplicationUserRole> authorities;
 
-//	@Override
-//	public Collection<? extends GrantedAuthority> getAuthorities (){
-//		return Collections.singleton(authorities);
-//	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_authorities",
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-	private Set<ApplicationUserRole> authorities;
+    @Override
+    public boolean isAccountNonExpired() {
+        return isAccountNonExpired;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return isAccountNonLocked;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities(){
-		return authorities;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return isCredentialsNonExpired;
+    }
 
-	@Override
-	public boolean isAccountNonExpired(){
-		return isAccountNonExpired;
-	}
-
-	@Override
-	public boolean isAccountNonLocked(){
-		return isAccountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired(){
-		return isCredentialsNonExpired;
-	}
-
-	@Override
-	public boolean isEnabled(){
-		return isEnabled;
-	}
-
+    @Override
+    public boolean isEnabled() {
+        return isEnabled;
+    }
 }

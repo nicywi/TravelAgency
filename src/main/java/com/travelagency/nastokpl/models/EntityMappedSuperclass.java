@@ -13,12 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public sealed abstract class EntityMappedSuperclass
-		permits AirportEntity, ApplicationUserRole, CityEntity, ContinentEntity, CountryEntity, HotelEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long id;
-	@Column
-	private String name;
-	// code
+        permits AirportEntity, ApplicationUserRole, CityEntity, ContinentEntity, CountryEntity, HotelEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+    @Column
+    private String name;
 }
