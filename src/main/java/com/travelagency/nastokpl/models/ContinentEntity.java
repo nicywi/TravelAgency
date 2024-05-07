@@ -20,7 +20,6 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class ContinentEntity extends EntityMappedSuperclass {
-	@OneToMany(mappedBy = "continent")
-	private List<CountryEntity> countries;
-	// code
+    @OneToMany(mappedBy = "continent")
+    private List<CountryEntity> countries;
 }

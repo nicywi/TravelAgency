@@ -19,15 +19,14 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class CountryEntity extends EntityMappedSuperclass {
-	@ManyToOne
-	@JoinColumn(name = "continent_id")
-	private ContinentEntity continent;
+    @ManyToOne
+    @JoinColumn(name = "continent_id")
+    private ContinentEntity continent;
 
-	@OneToMany(mappedBy = "country")
-	private List<CityEntity> cities;
+    @OneToMany(mappedBy = "country")
+    private List<CityEntity> cities;
 
-	public CountryDTO toDTO(){
-		return new CountryDTO(this.getId(), this.getName());
-	}
-	// code
+    public CountryDTO toDTO() {
+        return new CountryDTO(this.getId(), this.getName());
+    }
 }

@@ -20,33 +20,32 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class PurchaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
 
-	@Column(name = "adult_count")
-	@Check(constraints = "adult_count >= 0")
-	private Integer adultCount;
+    @Column(name = "adult_count")
+    @Check(constraints = "adult_count >= 0")
+    private Integer adultCount;
 
-	@Column(name = "child_count")
-	@Check(constraints = "child_count >= 0")
-	private Integer childCount;
+    @Column(name = "child_count")
+    @Check(constraints = "child_count >= 0")
+    private Integer childCount;
 
-	@Check(constraints = "adult_count + child_count > 0")
+    @Check(constraints = "adult_count + child_count > 0")
 
-	@Column(name = "total_amount")
-	@Digits(integer = 8, fraction = 2)
-	private BigDecimal totalAmount;
+    @Column(name = "total_amount")
+    @Digits(integer = 8, fraction = 2)
+    private BigDecimal totalAmount;
 
-	@Column(name = "purchase_date")
-	private LocalDate date;
+    @Column(name = "purchase_date")
+    private LocalDate date;
 
-	@ManyToOne
-	@JoinColumn(name = "trip_id")
-	private TripEntity trip;
+    @ManyToOne
+    @JoinColumn(name = "trip_id")
+    private TripEntity trip;
 
-	@OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
-	private List<ParticipantEntity> participant;
-	// code
+    @OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
+    private List<ParticipantEntity> participant;
 }

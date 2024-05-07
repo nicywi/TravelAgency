@@ -23,28 +23,26 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public final class CityEntity extends EntityMappedSuperclass {
-	@ManyToOne
-	@JoinColumn(name = "country_id")
-	private CountryEntity country;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private CountryEntity country;
 
-	@OneToMany(mappedBy = "city")
-	private List<AirportEntity> airports;
+    @OneToMany(mappedBy = "city")
+    private List<AirportEntity> airports;
 
-	//It is optional in some cases - when departuring from a city, we dont need hotel
-	@OneToMany(mappedBy = "city")
-	private List<HotelEntity> hotels;
+    @OneToMany(mappedBy = "city")
+    private List<HotelEntity> hotels;
 
-	@OneToMany(mappedBy = "departureCityId")
-	private List<TripEntity> departureCityId;
+    @OneToMany(mappedBy = "departureCityId")
+    private List<TripEntity> departureCityId;
 
-	@OneToMany(mappedBy = "destinationCityId")
-	private List<TripEntity> destinationCityId;
+    @OneToMany(mappedBy = "destinationCityId")
+    private List<TripEntity> destinationCityId;
 
-	public CityDTO toDTO(){
-		List<AirportDTO> airportDTOs = this.airports != null ? this.airports.stream().map(AirportEntity::toDTO).collect(Collectors.toList()) : null;
-		List<HotelDTO> hotelDTOs = this.hotels != null ? this.hotels.stream().map(HotelEntity::toDTO).collect(Collectors.toList()) : null;
-		CountryDTO countryDTO = this.country != null ? this.country.toDTO() : null;
-		return new CityDTO(this.getId(), countryDTO, airportDTOs, hotelDTOs);
-	}
-	// code
+    public CityDTO toDTO() {
+        List<AirportDTO> airportDTOs = this.airports != null ? this.airports.stream().map(AirportEntity::toDTO).collect(Collectors.toList()) : null;
+        List<HotelDTO> hotelDTOs = this.hotels != null ? this.hotels.stream().map(HotelEntity::toDTO).collect(Collectors.toList()) : null;
+        CountryDTO countryDTO = this.country != null ? this.country.toDTO() : null;
+        return new CityDTO(this.getId(), countryDTO, airportDTOs, hotelDTOs);
+    }
 }
