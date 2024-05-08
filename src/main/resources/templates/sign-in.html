@@ -8,15 +8,19 @@
 <body style="font-family: Arial, sans-serif;
             background-color: #799f78;">
 <form th:action="@{/api/sign-in}" method="post">
-    <div>
-        <label for="InputUserName">Name</label>
-        <input id="InputUserName" placeholder="Enter your username">
-    </div>
-    <div>
-        <label for="inputPassword">Password</label>
-        <input id="inputPassword" type="password"placeholder="Password">
-    </div>
-    <button type="button" class="btn btn-dark">Login</button>
+    <main class="container align-center">
+        <div class="row d-flex justify-content-evenly">
+            <label for="inputUsername">Name</label>
+            <input id="inputUsername" type="text" th:field="*{username}" placeholder="Enter your username">
+        </div>
+        <div class="row d-flex justify-content-evenly">
+            <label for="inputPassword">Password</label>
+            <input id="inputPassword" type="password" th:field="*{password}" placeholder="Password">
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-dark">Login</button>
+        </div>
+    </main>
 </form>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
