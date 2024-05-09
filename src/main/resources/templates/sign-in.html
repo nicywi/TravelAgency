@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-in page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body style="font-family: Arial, sans-serif;
+            background-color: #799f78;">
+<form th:action="@{/api/sign-in}" method="post">
+    <main class="container align-center">
+        <div class="row d-flex justify-content-evenly">
+            <label for="inputUsername">Name</label>
+            <input id="inputUsername" type="text"> <!-- th:field="*{username}"  placeholder="Enter your username">-->
+        </div>
+        <div class="row d-flex justify-content-evenly">
+            <label for="inputPassword">Password</label>
+            <input id="inputPassword" type="password" <!--th:field="*{password}" placeholder="Password">-->
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-dark">Login</button>
+        </div>
+    </main>
+</form>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
